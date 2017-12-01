@@ -93,7 +93,7 @@ int Day01::solve_for_input(const std::string& input, int distance) {
 	int length = input.length();
 	for (int i = 0; i < length; ++i) {
 		if (input[i] == input[(i+distance)%length]) {
-			sum += (input[i] - 0x30);
+			sum += (input[i] - '0');
 		}
 	}
 
