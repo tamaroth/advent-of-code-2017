@@ -14,6 +14,9 @@
 namespace advent {
 
 namespace {
+	///
+	/// Input for puzzle for Day 01
+	///
 	const std::string one_input = "4947511368953458947325823626295765395991842961953181626646951893"
 		"933643725857788685121948639276527881497797486579893186459362218877315427185626432726838626"
 		"275373786248436148313374416597412812896387651714525764663813145588216365953949817885886734"
@@ -39,6 +42,9 @@ namespace {
 		"737335552615438713597977965298478617489795275799857579647426674737672692483352298368182974"
 		"77665453189662485548925521497365877771665365728224394427883312135322325169141784";
 
+	///
+	/// Test values and results for first part of the puzzle.
+	///
 	const std::vector<TestData> part_one_tests {
 		{"1122", 3},
 		{"1111", 4},
@@ -46,6 +52,9 @@ namespace {
 		{"91212129", 9},
 	};
 
+	///
+	/// Test values and result for the second part of the puzzle.
+	///
 	const std::vector<TestData> part_two_tests {
 		{"1212", 6},
 		{"1221", 0},
@@ -62,12 +71,14 @@ void Day01::solve_part_one() {
 		<< std::endl;
 }
 
+// Override.
 void Day01::solve_part_two() {
 	std::cout << part_two()
 			<< solve_for_input(one_input, one_input.length() >> 1)
 		<< std::endl;
 }
 
+// Override.
 bool Day01::test_part_one() {
 	for (const auto& [input, expected] : part_one_tests) {
 		TEST_EQ(input, solve_for_input(input), expected);
@@ -75,6 +86,7 @@ bool Day01::test_part_one() {
 	return true;
 }
 
+// Override.
 bool Day01::test_part_two() {
 	for (const auto& [input, expected] : part_two_tests) {
 		auto distance = input.length() >> 1;
@@ -83,6 +95,11 @@ bool Day01::test_part_two() {
 	return false;
 }
 
+///
+/// The method returns sum all values of digits in input that have that same
+/// value as `distance` distant character while treating input as a circular
+/// buffer.
+///
 int Day01::solve_for_input(const std::string& input, int distance) {
 	if (input.length() <= 1) {
 		LOG_MSG("too short input");
