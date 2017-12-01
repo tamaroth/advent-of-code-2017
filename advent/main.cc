@@ -5,14 +5,14 @@
 
 #include <cstring>
 
-#include "advent/utils/assert.hh"
+#include "advent/utils/base.hh"
 #include "advent/utils/solutions.hh"
 #include "advent/utils/timer.hh"
 
 namespace {
 
-void run_tests_for_task(advent::Solutions& solutions, advent::Task task) {
-	auto day = solutions.get_or_create(task);
+void run_tests_for_task(advent::Solutions& solutions, advent::TaskID task_id) {
+	auto day = solutions.get_task(task_id);
 	advent::measure_execution_time(day->part_one(), [&] {
 		day->test_part_one();
 	});
@@ -21,8 +21,8 @@ void run_tests_for_task(advent::Solutions& solutions, advent::Task task) {
 	});
 }
 
-void run_task_solutions(advent::Solutions& solutions, advent::Task task) {
-	auto day = solutions.get_or_create(task);
+void run_task_solutions(advent::Solutions& solutions, advent::TaskID task_id) {
+	auto day = solutions.get_task(task_id);
 	advent::measure_execution_time(day->part_one(), [&] {
 		day->solve_part_one();
 	});
@@ -34,14 +34,12 @@ void run_task_solutions(advent::Solutions& solutions, advent::Task task) {
 }
 
 int main(int argc, char** argv) {
-	using advent::Task;
-
-	std::array<Task, static_cast<int>(Task::kFinished)> to_test = {
-		Task::kDay01,
+	std::array<advent::TaskID, static_cast<int>(advent::TaskID::kFinished)> to_run = {
+		advent::TaskID::kDay01,
 	};
 	advent::Solutions solutions;
 
-	for (const auto& task : to_test) {
+	for (const auto& task : to_run) {
 		if (argc == 2 && !strcmp(argv[1], "tests")) {
 			run_tests_for_task(solutions, task);
 		}

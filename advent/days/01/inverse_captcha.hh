@@ -10,7 +10,7 @@
 
 namespace advent {
 
-class Day01: public Day {
+class Day01: public Task {
 public:
 	Day01() = default;
 	~Day01() override = default;

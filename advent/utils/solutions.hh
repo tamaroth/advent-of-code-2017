@@ -8,24 +8,43 @@
 #include <map>
 #include <memory>
 
-#include "base.hh"
-
 namespace advent {
 
-enum class Task {
+class Task;
+
+///
+/// A list of all solved tasks.
+///
+enum class TaskID {
 	kDay01,
 	kFinished
 };
 
+///
+/// A representation of all solved tasks.
+///
 class Solutions {
 public:
+	/// @name Construction and Destruction.
+	/// @{
 	Solutions();
 	~Solutions();
 
-	std::shared_ptr<Day> get_or_create(Task task);
+	Solutions(const Solutions&);
+	Solutions& operator=(const Solutions&);
+
+	Solutions(Solutions&&);
+	Solutions& operator=(Solutions&&);
+	/// @}
+
+	/// @name Access to tasks.
+	/// @{
+	std::shared_ptr<Task> get_task(TaskID task);
+	/// @}
 
 private:
-	std::map<Task, std::shared_ptr<Day>> solutions;
+	/// Cache containing loaded solutions.
+	std::map<TaskID, std::shared_ptr<Task>> solutions;
 };
 
 }
