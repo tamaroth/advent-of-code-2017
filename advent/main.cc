@@ -13,20 +13,20 @@ namespace {
 
 void run_tests_for_task(advent::Solutions& solutions, advent::Task task) {
 	auto day = solutions.get_or_create(task);
-	advent::execution(day->part_one(), [&] {
+	advent::measure_execution_time(day->part_one(), [&] {
 		day->test_part_one();
 	});
-	advent::execution(day->part_two(), [&] {
+	advent::measure_execution_time(day->part_two(), [&] {
 		day->test_part_two();
 	});
 }
 
 void run_task_solutions(advent::Solutions& solutions, advent::Task task) {
 	auto day = solutions.get_or_create(task);
-	advent::execution(day->part_one(), [&] {
+	advent::measure_execution_time(day->part_one(), [&] {
 		day->solve_part_one();
 	});
-	advent::execution(day->part_two(), [&] {
+	advent::measure_execution_time(day->part_two(), [&] {
 		day->solve_part_two();
 	});
 }
