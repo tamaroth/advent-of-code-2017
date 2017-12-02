@@ -46,12 +46,12 @@ public:
 	///
 	/// Run tests for first part of a puzzle.
 	///
-	virtual bool test_part_one() = 0;
+	virtual void test_part_one() = 0;
 
 	///
 	/// Run tests for second part of a puzzle.
 	///
-	virtual bool test_part_two() = 0;
+	virtual void test_part_two() = 0;
 	/// @}
 
 	/// @name Names of solutions.

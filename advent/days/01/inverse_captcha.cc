@@ -79,20 +79,17 @@ void Day01::solve_part_two() {
 }
 
 // Override.
-bool Day01::test_part_one() {
+void Day01::test_part_one() {
 	for (const auto& [input, expected] : part_one_tests) {
 		TEST_EQ(input, solve_for_input(input), expected);
 	}
-	return true;
 }
 
 // Override.
-bool Day01::test_part_two() {
+void Day01::test_part_two() {
 	for (const auto& [input, expected] : part_two_tests) {
-		auto distance = input.length() >> 1;
-		TEST_EQ(input, solve_for_input(input, distance), expected);
+		TEST_EQ(input, solve_for_input(input, input.length() >> 1), expected);
 	}
-	return false;
 }
 
 ///

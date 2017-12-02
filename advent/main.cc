@@ -13,12 +13,8 @@ namespace {
 
 void run_tests_for_task(advent::Solutions& solutions, advent::TaskID task_id) {
 	auto day = solutions.get_task(task_id);
-	advent::measure_execution_time(day->part_one(), [&] {
-		day->test_part_one();
-	});
-	advent::measure_execution_time(day->part_two(), [&] {
-		day->test_part_two();
-	});
+	day->test_part_one();
+	day->test_part_two();
 }
 
 void run_task_solutions(advent::Solutions& solutions, advent::TaskID task_id) {
@@ -36,6 +32,7 @@ void run_task_solutions(advent::Solutions& solutions, advent::TaskID task_id) {
 int main(int argc, char** argv) {
 	std::array<advent::TaskID, static_cast<int>(advent::TaskID::kFinished)> to_run = {
 		advent::TaskID::kDay01,
+		advent::TaskID::kDay02,
 	};
 	advent::Solutions solutions;
 

@@ -18,8 +18,8 @@ public:
 	virtual void solve_part_one() override;
 	virtual void solve_part_two() override;
 
-	virtual bool test_part_one() override;
-	virtual bool test_part_two() override;
+	virtual void test_part_one() override;
+	virtual void test_part_two() override;
 
 private:
 	int solve_for_input(const std::string& input, int distance = 1);
