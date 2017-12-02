@@ -2,10 +2,10 @@
 
 ## Solution table.
 
-| Day | Name                                             | Part 1    | Part 2    |
-|:---:|:-------------------------------------------------|:---------:|:---------:|
-| 01  | [Inverse Captcha][day01][Solution][day01sol]     |      77µs |      49µs |
-| 02  | [Corruption Checksum][day02][Solution][day02sol] |      11µs |      35µs |
+| Day | Name                                                | Part 1    | Part 2    |
+|:---:|:----------------------------------------------------|:---------:|:---------:|
+| 01  | [Inverse Captcha][day01] - [Solution][day01sol]     |      77µs |      49µs |
+| 02  | [Corruption Checksum][day02] - [Solution][day02sol] |      11µs |      35µs |
 
 [day01]: https://adventofcode.com/2017/day/1
 [day01sol]: ./advent/days/01/inverse_captcha.cc
