@@ -4,6 +4,7 @@
 
 set(DAYS_SOURCES
 	01/inverse_captcha.cc
+	02/corruption_checksum.cc
 )
 
 add_library(days SHARED ${DAYS_SOURCES})
