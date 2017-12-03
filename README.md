@@ -13,7 +13,7 @@
 [day02]: https://adventofcode.com/2017/day/2
 [day02sol]: ./advent/days/02/corruption_checksum.cc
 [day03]: http://adventofcode.com/2017/day/3
-[day03sol]: ./advent/days/03/spiral_memory.cc
+[day03sol]: ./advent/days/03/spiral_memory.cc#L76
 
 ## Building
 To build the code you will need:
