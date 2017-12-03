@@ -6,14 +6,16 @@
 |:---:|:----------------------------------------------------|:---------:|:---------:|
 | 01  | [Inverse Captcha][day01] - [Solution][day01sol]     |      77µs |      49µs |
 | 02  | [Corruption Checksum][day02] - [Solution][day02sol] |      11µs |      35µs |
+| 03  | [Spiral Memory][day03] - [Solution][day03sol]       |      15µs |      17µs |
 
 [day01]: https://adventofcode.com/2017/day/1
 [day01sol]: ./advent/days/01/inverse_captcha.cc
 [day02]: https://adventofcode.com/2017/day/2
 [day02sol]: ./advent/days/02/corruption_checksum.cc
+[day03]: http://adventofcode.com/2017/day/3
+[day03sol]: ./advent/days/03/spiral_memory.cc
 
 ## Building
-
 To build the code you will need:
  * [git](https://git-scm.com) or equivalent
  * [CMake 3.6+](https://cmake.org) or newer
