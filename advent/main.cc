@@ -33,6 +33,7 @@ int main(int argc, char** argv) {
 	std::array<advent::TaskID, static_cast<int>(advent::TaskID::kFinished)> to_run = {
 		advent::TaskID::kDay01,
 		advent::TaskID::kDay02,
+		advent::TaskID::kDay03,
 	};
 	advent::Solutions solutions;
 

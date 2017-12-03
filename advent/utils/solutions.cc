@@ -5,6 +5,7 @@
 
 #include "advent/days/01/inverse_captcha.hh"
 #include "advent/days/02/corruption_checksum.hh"
+#include "advent/days/03/spiral_memory.hh"
 #include "advent/utils/assert.hh"
 #include "advent/utils/base.hh"
 #include "advent/utils/container.hh"
@@ -38,6 +39,9 @@ std::shared_ptr<Task> Solutions::get_task(TaskID task) {
 			break;
 		case TaskID::kDay02:
 			solutions[task] = std::make_shared<Day02>();
+			break;
+		case TaskID::kDay03:
+			solutions[task] = std::make_shared<Day03>();
 			break;
 		default:
 			ABORT("unknown task");
