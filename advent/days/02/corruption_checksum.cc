@@ -16,6 +16,8 @@ namespace advent {
 
 namespace {
 
+using LocalTestData = BasicTestData<Matrix, int>;
+
 ///
 /// Input for Day 02 puzzle.
 ///

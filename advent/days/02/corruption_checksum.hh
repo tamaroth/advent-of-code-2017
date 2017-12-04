@@ -14,7 +14,6 @@ namespace advent {
 
 using Row = std::vector<int>;
 using Matrix = std::vector<Row>;
-using LocalTestData = BasicTestData<Matrix, int>;
 
 class Day02: public Task {
 public:
