@@ -20,6 +20,7 @@ enum class TaskID {
 	kDay02,
 	kDay03,
 	kDay04,
+	kDay05,
 	kFinished
 };
 

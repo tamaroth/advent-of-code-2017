@@ -9,6 +9,7 @@
 
 #include "advent/days/03/spiral_memory.hh"
 #include "advent/utils/assert.hh"
+#include "advent/utils/misc.hh"
 #include "advent/utils/tests.hh"
 
 namespace advent {
@@ -67,6 +68,16 @@ void Day03::test_part_one() {
 
 // Override.
 void Day03::test_part_two() {
+}
+
+// Override.
+std::string Day03::part_one() const {
+	return __COMPACT_PRETTY_FUNCTION__;
+}
+
+// Override.
+std::string Day03::part_two() const {
+	return __COMPACT_PRETTY_FUNCTION__;
 }
 
 ///

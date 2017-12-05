@@ -4,7 +4,7 @@
 ///
 
 #include <algorithm>
-#include <fstream>
+
 #include <iostream>
 #include <iterator>
 #include <regex>
@@ -14,6 +14,7 @@
 
 #include "advent/days/04/high_entropy_passphrases.hh"
 #include "advent/utils/assert.hh"
+#include "advent/utils/misc.hh"
 #include "advent/utils/tests.hh"
 
 namespace advent {
@@ -25,7 +26,7 @@ using LocalTestData = std::vector<BasicTestData<std::string, bool>>;
 ///
 /// Input for Day 04 puzzle.
 ///
-const std::string puzzle_input = "input.txt";
+const std::string puzzle_input = "day_04_input.txt";
 
 ///
 /// Test values and results for the first part of the puzzle.
@@ -60,31 +61,31 @@ std::vector<std::string> split(const std::string& input) {
 // Override.
 void Day04::solve_part_one() {
 	std::cout << part_one();
-	int correct_passphrases = 0;
-	std::ifstream file_stream("day_04_input.txt");
-	std::string line;
-	while(std::getline(file_stream, line)) {
-		if (solve_part_one_for_input(line)) {
-			correct_passphrases++;
+	auto lines = read_lines_from_file<std::string>(puzzle_input);
+	if (lines) {
+		int correct_passphrases = 0;
+		for (const auto& line : *lines) {
+			if (solve_part_one_for_input(line)) {
+				correct_passphrases++;
+			}
 		}
+		std::cout << correct_passphrases << std::endl;
 	}
-
-	std::cout << correct_passphrases << std::endl;
 }
 
 // Override.
 void Day04::solve_part_two() {
 	std::cout << part_two();
-	int correct_passphrases = 0;
-	std::ifstream file_stream("day_04_input.txt");
-	std::string line;
-	while(std::getline(file_stream, line)) {
-		if (solve_part_two_for_input(line)) {
-			correct_passphrases++;
+	auto lines = read_lines_from_file<std::string>(puzzle_input);
+	if (lines) {
+		int correct_passphrases = 0;
+		for (const auto& line : *lines) {
+			if (solve_part_two_for_input(line)) {
+				correct_passphrases++;
+			}
 		}
+		std::cout << correct_passphrases << std::endl;
 	}
-
-	std::cout << correct_passphrases << std::endl;
 }
 
 // Override.
@@ -99,6 +100,16 @@ void Day04::test_part_two() {
 	for (auto& [input, expected] : part_two_tests) {
 		TEST_EQ(input, solve_part_two_for_input(input), expected);
 	}
+}
+
+// Override.
+std::string Day04::part_one() const {
+	return __COMPACT_PRETTY_FUNCTION__;
+}
+
+// Override.
+std::string Day04::part_two() const {
+	return __COMPACT_PRETTY_FUNCTION__;
 }
 
 ///

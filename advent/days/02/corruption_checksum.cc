@@ -10,6 +10,7 @@
 
 #include "advent/days/02/corruption_checksum.hh"
 #include "advent/utils/assert.hh"
+#include "advent/utils/misc.hh"
 #include "advent/utils/tests.hh"
 
 namespace advent {
@@ -114,6 +115,16 @@ void Day02::test_part_one() {
 // Override.
 void Day02::test_part_two() {
 	TEST_EQ(part_two_tests.first, solve_part_two_for_input(part_two_tests.first), part_two_tests.second);
+}
+
+// Override.
+std::string Day02::part_one() const {
+	return __COMPACT_PRETTY_FUNCTION__;
+}
+
+// Override.
+std::string Day02::part_two() const {
+	return __COMPACT_PRETTY_FUNCTION__;
 }
 
 ///

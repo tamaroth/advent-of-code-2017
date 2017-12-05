@@ -7,7 +7,22 @@ set(DAYS_SOURCES
 	02/corruption_checksum.cc
 	03/spiral_memory.cc
 	04/high_entropy_passphrases.cc
+	05/maze.cc
 )
 
 add_library(days SHARED ${DAYS_SOURCES})
 target_include_directories(days PUBLIC ${SRC_DIR})
+
+##
+## Copy input files for certain days
+##
+
+## Day 04 input
+add_custom_command(TARGET days POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy
+		${SRC_DIR}/advent/days/04/day_04_input.txt ${PROJECT_BINARY_DIR})
+
+## Day 05 input
+add_custom_command(TARGET days POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy
+		${SRC_DIR}/advent/days/05/day_05_input.txt ${PROJECT_BINARY_DIR})

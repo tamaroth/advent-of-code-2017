@@ -56,8 +56,8 @@ public:
 
 	/// @name Names of solutions.
 	/// @{
-	virtual std::string part_one() const;
-	virtual std::string part_two() const;
+	virtual std::string part_one() const = 0;
+	virtual std::string part_two() const = 0;
 	/// @}
 };
 

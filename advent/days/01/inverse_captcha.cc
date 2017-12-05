@@ -9,6 +9,7 @@
 
 #include "advent/days/01/inverse_captcha.hh"
 #include "advent/utils/assert.hh"
+#include "advent/utils/misc.hh"
 #include "advent/utils/tests.hh"
 
 namespace advent {
@@ -90,6 +91,13 @@ void Day01::test_part_two() {
 	for (const auto& [input, expected] : part_two_tests) {
 		TEST_EQ(input, solve_for_input(input, input.length() >> 1), expected);
 	}
+}
+
+std::string Day01::part_one() const {
+	return __COMPACT_PRETTY_FUNCTION__;
+}
+std::string Day01::part_two() const {
+	return __COMPACT_PRETTY_FUNCTION__;
 }
 
 ///

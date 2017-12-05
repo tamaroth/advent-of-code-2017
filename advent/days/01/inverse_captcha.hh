@@ -21,6 +21,9 @@ public:
 	virtual void test_part_one() override;
 	virtual void test_part_two() override;
 
+	virtual std::string part_one() const override;
+	virtual std::string part_two() const override;
+
 private:
 	int solve_for_input(const std::string& input, int distance = 1);
 };

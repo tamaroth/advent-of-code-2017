@@ -35,6 +35,7 @@ int main(int argc, char** argv) {
 		advent::TaskID::kDay02,
 		advent::TaskID::kDay03,
 		advent::TaskID::kDay04,
+		advent::TaskID::kDay05,
 	};
 	advent::Solutions solutions;
 

@@ -1,6 +1,6 @@
 /// @file
 ///
-/// Day 04: High-Entropy Passphrases
+/// Day 05: A Maze of Twisty Trampolines, All Alike
 ///
 
 #include <string>
@@ -9,10 +9,10 @@
 
 namespace advent {
 
-class Day04: public Task {
+class Day05: public Task {
 public:
-	Day04() = default;
-	~Day04() override = default;
+	Day05() = default;
+	~Day05() override = default;
 
 	virtual void solve_part_one() override;
 	virtual void solve_part_two() override;
@@ -24,8 +24,8 @@ public:
 	virtual std::string part_two() const override;
 
 private:
-	bool solve_part_one_for_input(const std::string& input);
-	bool solve_part_two_for_input(const std::string& input);
+	int solve_part_one_for_input(std::vector<int>& input);
+	int solve_part_two_for_input(std::vector<int>& input);
 };
 
 }

@@ -4,6 +4,7 @@
 
 set(UTILS_SOURCES
 	base.cc
+	misc.cc
 	solutions.cc
 )
 add_library(utils SHARED ${UTILS_SOURCES})
