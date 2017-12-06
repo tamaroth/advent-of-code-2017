@@ -4,13 +4,9 @@
 ///
 
 #include <algorithm>
-
 #include <iostream>
-#include <iterator>
-#include <regex>
 #include <string>
 #include <unordered_set>
-#include <vector>
 
 #include "advent/days/04/high_entropy_passphrases.hh"
 #include "advent/utils/assert.hh"
@@ -47,14 +43,6 @@ const LocalTestData part_two_tests {
 	{ "iiii oiii ooii oooi oooo", true },
 	{ "oiii ioii iioi iiio", false },
 };
-
-std::vector<std::string> split(const std::string& input) {
-	std::regex re(" ");
-	std::sregex_token_iterator
-		first{input.begin(), input.end(), re, -1},
-		last;
-	return {first, last};
-}
 
 }
 

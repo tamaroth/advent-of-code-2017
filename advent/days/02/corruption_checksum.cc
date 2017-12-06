@@ -63,19 +63,6 @@ const LocalTestData part_two_tests {
 	}, 9
 };
 
-std::ostream& operator<<(std::ostream& os, const Matrix& mx) {
-	os << "{" << std::endl;
-	for (const auto& row: mx) {
-		os << "    { ";
-		for (const auto& element: row) {
-			os << element << ", ";
-		}
-		os << "}," << std::endl;
-	}
-	os << "}" << std::endl;
-	return os;
-}
-
 int find_divisible(const std::vector<int>& input) {
 	for (const auto& first : input) {
 		for (const auto& second : input) {

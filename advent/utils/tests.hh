@@ -27,7 +27,7 @@ using TestData = BasicTestData<std::string, int>;
 	} \
 }
 
-#define TEST_EQ_V(input, got, expected) { \
+#define TEST_EQ_V(got, expected) { \
 	if (got != expected) { \
 		std::cerr << "\033[1;31m[TEST FAILED]\033[0m " \
 			<< __PRETTY_FUNCTION__ << " "\

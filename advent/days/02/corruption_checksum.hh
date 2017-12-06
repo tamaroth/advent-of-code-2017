@@ -9,11 +9,9 @@
 
 #include "advent/utils/base.hh"
 #include "advent/utils/tests.hh"
+#include "advent/utils/types.hh"
 
 namespace advent {
-
-using Row = std::vector<int>;
-using Matrix = std::vector<Row>;
 
 class Day02: public Task {
 public:

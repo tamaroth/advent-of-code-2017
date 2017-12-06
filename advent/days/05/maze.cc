@@ -56,13 +56,13 @@ void Day05::solve_part_two() {
 // Override.
 void Day05::test_part_one() {
 	auto [input, expected] = part_one_tests;
-	TEST_EQ_V(input, solve_part_one_for_input(input), expected);
+	TEST_EQ_V(solve_part_one_for_input(input), expected);
 }
 
 // Override.
 void Day05::test_part_two() {
 	auto [input, expected] = part_two_tests;
-	TEST_EQ_V(input, solve_part_two_for_input(input), expected);
+	TEST_EQ_V(solve_part_two_for_input(input), expected);
 }
 
 std::string Day05::part_one() const {

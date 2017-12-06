@@ -8,6 +8,7 @@ set(DAYS_SOURCES
 	03/spiral_memory.cc
 	04/high_entropy_passphrases.cc
 	05/maze.cc
+	06/memory_reallocation.cc
 )
 
 add_library(days SHARED ${DAYS_SOURCES})

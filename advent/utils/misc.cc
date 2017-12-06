@@ -4,6 +4,7 @@
 ///
 
 #include <string>
+#include <regex>
 
 #include "advent/utils/misc.hh"
 
@@ -18,6 +19,27 @@ std::string method_name(const std::string& function, const std::string& pretty_f
 	} else {
 		return (pretty_function.substr(begin,end - begin) + "(...) ");
 	}
+}
+
+std::vector<std::string> split(const std::string& input, const std::string regex) {
+	std::regex re(regex);
+	std::sregex_token_iterator
+		first{input.begin(), input.end(), re, -1},
+		last;
+	return {first, last};
+}
+
+std::ostream& operator<<(std::ostream& os, const Matrix& mx) {
+	os << "{" << std::endl;
+	for (const auto& row: mx) {
+		os << "    { ";
+		for (const auto& element: row) {
+			os << element << ", ";
+		}
+		os << "}," << std::endl;
+	}
+	os << "}" << std::endl;
+	return os;
 }
 
 }

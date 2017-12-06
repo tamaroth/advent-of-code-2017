@@ -8,6 +8,7 @@
 #include "advent/days/03/spiral_memory.hh"
 #include "advent/days/04/high_entropy_passphrases.hh"
 #include "advent/days/05/maze.hh"
+#include "advent/days/06/memory_reallocation.hh"
 #include "advent/utils/assert.hh"
 #include "advent/utils/base.hh"
 #include "advent/utils/container.hh"
@@ -50,6 +51,9 @@ std::shared_ptr<Task> Solutions::get_task(TaskID task) {
 			break;
 		case TaskID::kDay05:
 			solutions[task] = std::make_shared<Day05>();
+			break;
+		case TaskID::kDay06:
+			solutions[task] = std::make_shared<Day06>();
 			break;
 		default:
 			ABORT("unknown task");
