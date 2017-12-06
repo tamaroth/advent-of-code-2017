@@ -7,10 +7,50 @@
 
 #include <map>
 #include <memory>
+#include <type_traits>
 
 namespace advent {
 
 class Task;
+
+template<typename T>
+class Tasks_Impl {
+public:
+	class Iterator {
+	public:
+		Iterator(int value): value(value) {}
+
+		T operator*(void) const {
+			return static_cast<T>(value);
+		}
+
+		void operator++( void ) {
+			++value;
+		}
+
+		bool operator!=(Iterator rhs) {
+			return value != rhs.value;
+		}
+
+	private:
+		int value;
+	};
+
+};
+
+template<typename T>
+typename Tasks_Impl<T>::Iterator begin(Tasks_Impl<T>) {
+	return typename Tasks_Impl<T>::Iterator(
+		static_cast<typename std::underlying_type<T>::type>(T::kFirst)
+	);
+}
+
+template<typename T>
+typename Tasks_Impl<T>::Iterator end(Tasks_Impl<T>) {
+	return typename Tasks_Impl<T>::Iterator(
+		static_cast<typename std::underlying_type<T>::type>(T::kLast) + 1
+	);
+}
 
 ///
 /// A list of all solved tasks.
@@ -22,8 +62,12 @@ enum class TaskID {
 	kDay04,
 	kDay05,
 	kDay06,
-	kFinished
+	kFirst = kDay01,
+	kLast = kDay06,
+	kAllDays
 };
+
+using Tasks = Tasks_Impl<TaskID>;
 
 ///
 /// A representation of all solved tasks.
