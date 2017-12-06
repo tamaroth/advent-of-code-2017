@@ -2,23 +2,15 @@
 ## Boost build.
 ##
 
-# We need to obtain the number of CPU cores to make the Boost build parallel.
 include(ProcessorCount)
 ProcessorCount(CPU_COUNT)
 
 set(BOOST_SRC_DIR "${BINARY_EXTERNAL_DIR}/src/boost-project")
 set(BOOST_INSTALL_DIR "${BINARY_EXTERNAL_DIR}/src/boost-project-install")
 ExternalProject_Add(boost-project
-	# Note: When updating version number, do not forget to update version
-	#       numbers in the libraries below.
 	URL "https://dl.bintray.com/boostorg/release/1.65.1/source/boost_1_65_1.tar.gz"
 	URL_HASH SHA256=a13de2c8fbad635e6ba9c8f8714a0e6b4264b60a29b964b940a22554705b6b60
 	BUILD_IN_SOURCE 1
-##	PATCH_COMMAND "${CMAKE_SOURCE_DIR}/cmake/patch_boost_sources.sh"
-##		"${BOOST_SRC_DIR}"
-##		"${CXX_COMPILER_NAME}"
-##		"${CMAKE_CXX_COMPILER}"
-##		"${CXX_COMPILER_VERSION}"
 	CONFIGURE_COMMAND "${BOOST_SRC_DIR}/bootstrap.sh"
 		"--with-toolset=${CXX_COMPILER_NAME}"
 	BUILD_COMMAND "${BOOST_SRC_DIR}/b2" install
@@ -30,7 +22,6 @@ ExternalProject_Add(boost-project
 		--link=static
 		--variant=release
 		-j${CPU_COUNT}
-	# Disable the install step (it is performed as part of the build step).
 	INSTALL_COMMAND ""
 	LOG_CONFIGURE ON
 	LOG_BUILD ON
