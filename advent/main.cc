@@ -8,81 +8,42 @@
 #include <string>
 #include <vector>
 
-#include <boost/algorithm/string.hpp>
-#include <boost/any.hpp>
 #include <boost/program_options.hpp>
 
+#include "advent/utils/arguments.hh"
 #include "advent/utils/base.hh"
-#include "advent/utils/container.hh"
 #include "advent/utils/solutions.hh"
 #include "advent/utils/timer.hh"
 
-namespace {
-
-enum class Test {
-	kNoTests,
-	kOnlyTests,
-	kBadEntry
-};
-
-struct TestOption {
-	TestOption(const std::string& test): test(string_to_test(test)) {}
-
-	static bool is_valid(const std::string& str) {
-		auto to_test =  boost::algorithm::to_lower_copy(str);
-		return advent::contains(correct_options, to_test);
-	}
-
-	static Test string_to_test(const std::string& str) {
-		auto to_test =  boost::algorithm::to_lower_copy(str);
-		if (advent::contains(correct_options, to_test)) {
-			return correct_options.at(to_test);
-		}
-		return Test::kBadEntry;
-	}
-
-	Test test;
-private:
-	static const std::map<std::string, Test> correct_options;
-};
+namespace advent {
 
 const std::map<std::string, Test> TestOption::correct_options = {
 	{"no", Test::kNoTests},
 	{"only", Test::kOnlyTests},
 };
 
-void validate(boost::any& v, const std::vector<std::string>& values, TestOption*, int)
-{
-	namespace po = boost::program_options;
+}
 
-	po::validators::check_first_occurrence(v);
+namespace {
 
-	std::string const& s = po::validators::get_single_string(values);
+using advent::Arguments;
+using advent::Test;
+using advent::TestOption;
 
-	if (TestOption::is_valid(s)) {
-		v = boost::any(TestOption(s), nullptr, nullptr);
-	} else {
-		throw po::validation_error(po::validation_error::invalid_option_value);
+namespace po = boost::program_options;
+
+template<typename Block, typename Handler>
+decltype(auto) exit_on_invalid_param(Block&& block, Handler&& handler) {
+	try {
+		return block();
+	} catch (const po::validation_error& ex) {
+		std::cerr << ex.what() << std::endl;
+		handler();
+		std::exit(0);
 	}
 }
 
-///
-/// Arguments
-///
-struct Arguments {
-	/// Should the help message be shown?
-	bool show_help = false;
-
-	/// Testing option.
-	Test test;
-
-	/// Which day to run?
-	advent::TaskID day_to_run = advent::TaskID::kAllDays;
-};
-
 Arguments parse_arguments(int argc, char** argv) {
-	namespace po = boost::program_options;
-
 	Arguments args;
 
 	po::options_description supported_options("Supported options");
@@ -118,19 +79,23 @@ Arguments parse_arguments(int argc, char** argv) {
 	po::options_description options;
 	options.add(supported_options);
 
-	po::variables_map vm;
-	auto parsed = po::command_line_parser(argc, argv)
-		.options(options)
-		.run();
-	po::store(parsed, vm);
-	po::notify(vm);
+	return exit_on_invalid_param([&]{
+		po::variables_map vm;
+		auto parsed = po::command_line_parser(argc, argv)
+			.options(options)
+			.run();
+		po::store(parsed, vm);
+		po::notify(vm);
 
-	if (args.show_help) {
+		if (args.show_help) {
+			std::cerr << options << std::endl;
+			std::exit(0);
+		}
+
+		return args;
+	}, [&]{
 		std::cerr << options << std::endl;
-		std::exit(0);
-	}
-
-	return args;
+	});
 }
 
 void run_tests_for_task(advent::Solutions& solutions, advent::TaskID task_id) {

@@ -2,12 +2,14 @@
 
 ## Solution table.
 
-| Day | Name                                                    | Part 1    | Part 2    |
-|:---:|:--------------------------------------------------------|:---------:|:---------:|
-| 01  | [Inverse Captcha][day01] - [Solution][day01sol]         |      77µs |      49µs |
-| 02  | [Corruption Checksum][day02] - [Solution][day02sol]     |      11µs |      35µs |
-| 03  | [Spiral Memory][day03] - [Solution][day03sol]           |      15µs |      17µs |
-| 04  | [High-Entropy Passphrases][day04] - [Solution][day04sol]|      41ms |      40ms |
+| Day | Name                                                                    | Part 1    | Part 2    |
+|:---:|:------------------------------------------------------------------------|:---------:|:---------:|
+| 01  | [Inverse Captcha][day01] - [Solution][day01sol]                         |      77µs |      49µs |
+| 02  | [Corruption Checksum][day02] - [Solution][day02sol]                     |      11µs |      35µs |
+| 03  | [Spiral Memory][day03] - [Solution][day03sol]                           |      15µs |      17µs |
+| 04  | [High-Entropy Passphrases][day04] - [Solution][day04sol]                |      41ms |      40ms |
+| 05  | [A Maze of Twisty Trampolines, All Alike][day05] - [Solution][day05sol] |       2ms |     263ms |
+| 06  | [Memory Reallocation][day06] - [Solution][day06sol]                     |      22ms |       4µs |
 
 [day01]: https://adventofcode.com/2017/day/1
 [day01sol]: ./advent/days/01/inverse_captcha.cc
@@ -17,6 +19,10 @@
 [day03sol]: ./advent/days/03/spiral_memory.cc#L76
 [day04]: http://adventofcode.com/2017/day/3
 [day04sol]: ./advent/days/03/spiral_memory.cc#L76
+[day05]: http://adventofcode.com/2017/day/5
+[day05sol]: ./advent/days/05/maze.cc
+[day06]: http://adventofcode.com/2017/day/6
+[day06sol]: ./advent/days/05/memory_reallocation.cc
 
 ## Building
 To build the code you will need:
