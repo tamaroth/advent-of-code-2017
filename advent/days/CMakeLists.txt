@@ -12,6 +12,7 @@ set(DAYS_SOURCES
 
 add_library(days SHARED ${DAYS_SOURCES})
 target_include_directories(days PUBLIC ${SRC_DIR})
+target_link_libraries(days PUBLIC boost)
 
 ##
 ## Copy input files for certain days

@@ -36,8 +36,29 @@ execute_process(COMMAND ${CMAKE_CXX_COMPILER} -dumpversion
 ## Paths.
 ##
 
+# All our CMake modules are in the 'cmake' subdirectory.
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/advent/cmake")
+
 set(SRC_DIR "${CMAKE_SOURCE_DIR}")
 set(BINARY_SRC_DIR "${PROJECT_BINARY_DIR}")
+set(EXTERNAL_DIR "${CMAKE_SOURCE_DIR}/external")
+set(BINARY_EXTERNAL_DIR "${PROJECT_BINARY_DIR}/external")
+set(INSTALL_LIB_DIR "${CMAKE_INSTALL_PREFIX}/lib")
+
+# Set a proper RPATH for installed executables. Otherwise, they would not be
+# able to find shared libraries after installation.
+set(CMAKE_INSTALL_RPATH "${INSTALL_LIB_DIR}")
+
+##
+## External projects.
+##
+
+include (ExternalProject)
+
+# The default root directory for external projects.
+set_directory_properties(PROPERTIES EP_PREFIX ${BINARY_EXTERNAL_DIR})
+
+include(boost)
 
 ##
 ## Compiler options.
@@ -91,15 +112,6 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wunreachable-code")
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wunused-exception-parameter")
 endif()
-
-# Disable assertions in the release mode.
-if(NOT CLUSTY_ASSERTIONS)
-	# Disable standard assertions via assert() and our own assertions.
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNDEBUG")
-	# Disable Boost asserts via BOOST_ASSERT().
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DBOOST_DISABLE_ASSERTS")
-endif()
-
 
 ##
 ## Subdirectories.

@@ -8,5 +8,8 @@ add_subdirectory(utils)
 ## Main executable
 ##
 add_executable(advent main.cc)
-target_link_libraries(advent utils days)
-
+target_include_directories(advent PUBLIC ${SRC_DIR})
+target_link_libraries(advent PUBLIC
+	utils
+	days
+)
