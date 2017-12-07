@@ -40,28 +40,28 @@ TEST_F(Day07Tests, lines_to_database_correctly_convers_string_lines_to_database)
 	ASSERT_EQ(db["fwft"].children[0], "ktlj");
 }
 
-TEST_F(Day07Tests, find_bad_value_finds_bad_value) {
+TEST_F(Day07Tests, find_bad_value_and_compute_difference_finds_bad_value) {
 	std::multimap<int, std::string> weights = {
 		{251, "ugml"},
 		{243, "padx"},
 		{243, "fuft"},
 	};
 
-	auto bad_value = find_bad_value(weights);
+	auto bad_value = find_bad_value_and_compute_difference(weights);
 
 	ASSERT_TRUE(bad_value);
 	ASSERT_EQ(bad_value->first, 8);
 	ASSERT_EQ(bad_value->second, "ugml");
 }
 
-TEST_F(Day07Tests, find_bad_value_does_not_find_bad_value) {
+TEST_F(Day07Tests, find_bad_value_and_compute_difference_does_not_find_bad_value) {
 	std::multimap<int, std::string> weights = {
 		{243, "ugml"},
 		{243, "padx"},
 		{243, "fuft"},
 	};
 
-	auto bad_value = find_bad_value(weights);
+	auto bad_value = find_bad_value_and_compute_difference(weights);
 
 	ASSERT_FALSE(bad_value);
 }

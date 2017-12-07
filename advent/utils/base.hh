@@ -24,6 +24,8 @@ public:
 
 	Task(Task&&);
 	Task& operator=(Task&&);
+
+	virtual void set_up() {};
 	/// @}
 
 	/// @name Puzzle Solutions

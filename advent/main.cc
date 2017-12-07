@@ -75,6 +75,7 @@ Arguments parse_arguments(int argc, char** argv) {
 
 void run_task_solutions(advent::Solutions& solutions, advent::TaskID task_id) {
 	auto day = solutions.get_task(task_id);
+	day->set_up();
 	advent::measure_execution_time(day->part_one(), [&] {
 		day->solve_part_one();
 	});
