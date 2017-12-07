@@ -43,17 +43,6 @@ public:
 	/// @name Tests for Solutions
 	/// @{
 
-	///
-	/// Run tests for first part of a puzzle.
-	///
-	virtual void test_part_one() = 0;
-
-	///
-	/// Run tests for second part of a puzzle.
-	///
-	virtual void test_part_two() = 0;
-	/// @}
-
 	/// @name Names of solutions.
 	/// @{
 	virtual std::string part_one() const = 0;

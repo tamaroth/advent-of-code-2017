@@ -10,7 +10,6 @@
 #include "advent/days/01/inverse_captcha.hh"
 #include "advent/utils/assert.hh"
 #include "advent/utils/misc.hh"
-#include "advent/utils/tests.hh"
 
 namespace advent {
 
@@ -42,27 +41,6 @@ namespace {
 		"721592658275664437945157559398136761947554744772241521399879444194633713864998414152277346"
 		"737335552615438713597977965298478617489795275799857579647426674737672692483352298368182974"
 		"77665453189662485548925521497365877771665365728224394427883312135322325169141784";
-
-	///
-	/// Test values and results for first part of the puzzle.
-	///
-	const std::vector<TestData> part_one_tests {
-		{"1122", 3},
-		{"1111", 4},
-		{"1234", 0},
-		{"91212129", 9},
-	};
-
-	///
-	/// Test values and result for the second part of the puzzle.
-	///
-	const std::vector<TestData> part_two_tests {
-		{"1212", 6},
-		{"1221", 0},
-		{"123425", 4},
-		{"123123", 12},
-		{"12131415", 4},
-	};
 }
 
 // Override.
@@ -77,20 +55,6 @@ void Day01::solve_part_two() {
 	std::cout << part_two()
 			<< solve_for_input(one_input, one_input.length() >> 1)
 		<< std::endl;
-}
-
-// Override.
-void Day01::test_part_one() {
-	for (const auto& [input, expected] : part_one_tests) {
-		TEST_EQ(input, solve_for_input(input), expected);
-	}
-}
-
-// Override.
-void Day01::test_part_two() {
-	for (const auto& [input, expected] : part_two_tests) {
-		TEST_EQ(input, solve_for_input(input, input.length() >> 1), expected);
-	}
 }
 
 std::string Day01::part_one() const {

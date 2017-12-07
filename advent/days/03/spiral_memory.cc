@@ -10,38 +10,15 @@
 #include "advent/days/03/spiral_memory.hh"
 #include "advent/utils/assert.hh"
 #include "advent/utils/misc.hh"
-#include "advent/utils/tests.hh"
 
 namespace advent {
 
 namespace {
 
-using LocalTestData = BasicTestData<int, int>;
-
 ///
 /// Input for the puzzle
 ///
 const int puzzle_input = 289326;
-
-///
-/// Test values and results for the first part of the puzzle.
-///
-const std::vector<LocalTestData> part_one_tests {
-	{1, 0},
-	{12, 3},
-	{23, 2},
-	{1024, 31},
-};
-
-///
-/// Test values and results for the second part of the puzzle.
-///
-const std::vector<LocalTestData> part_two_tests {
-	{7, 10},
-	{32, 54},
-	{112, 122},
-	{1024, 1968}
-};
 
 }
 
@@ -57,17 +34,6 @@ void Day03::solve_part_two() {
 	std::cout << part_two()
 			<< solve_part_two_for_input(puzzle_input)
 		<< std::endl;
-}
-
-// Override.
-void Day03::test_part_one() {
-	for (auto& [value, expected] : part_one_tests) {
-		TEST_EQ(value, solve_part_one_for_input(value), expected);
-	}
-}
-
-// Override.
-void Day03::test_part_two() {
 }
 
 // Override.

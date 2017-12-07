@@ -11,13 +11,12 @@
 #include "advent/days/02/corruption_checksum.hh"
 #include "advent/utils/assert.hh"
 #include "advent/utils/misc.hh"
-#include "advent/utils/tests.hh"
 
 namespace advent {
 
 namespace {
 
-using LocalTestData = BasicTestData<Matrix, int>;
+//using LocalTestData = BasicTestData<Matrix, int>;
 
 ///
 /// Input for Day 02 puzzle.
@@ -39,28 +38,6 @@ const Matrix puzzle_input = {
 	{ 728, 249, 1728, 305, 2407, 239, 691, 2241, 2545, 1543, 55, 2303, 1020, 753, 193, 1638 },
 	{ 260, 352, 190, 877, 118, 77, 1065, 1105, 1085, 1032, 71, 87, 851, 56, 1161, 667 },
 	{ 1763, 464, 182, 1932, 1209, 640, 545, 931, 1979, 197, 1774, 174, 2074, 1800, 939, 161 },
-};
-
-///
-/// Test values and results for the first part of the puzzle.
-///
-const LocalTestData part_one_tests {
-	{
-		{ 5, 1, 9, 5, },
-		{ 7, 5, 3, },
-		{ 2, 4, 6, 8 ,},
-	}, 18
-};
-
-///
-/// Test value and results for the second part of the puzzle.
-///
-const LocalTestData part_two_tests {
-	{
-		{ 5, 9, 2, 8, },
-		{ 9, 4, 7, 3, },
-		{ 3, 8, 6, 5, },
-	}, 9
 };
 
 int find_divisible(const std::vector<int>& input) {
@@ -92,16 +69,6 @@ void Day02::solve_part_two() {
 	std::cout << part_two()
 			<< solve_part_two_for_input(puzzle_input)
 		<< std::endl;
-}
-
-// Override.
-void Day02::test_part_one() {
-	TEST_EQ(part_one_tests.first, solve_part_one_for_input(part_one_tests.first), part_one_tests.second);
-}
-
-// Override.
-void Day02::test_part_two() {
-	TEST_EQ(part_two_tests.first, solve_part_two_for_input(part_two_tests.first), part_two_tests.second);
 }
 
 // Override.

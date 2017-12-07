@@ -10,40 +10,28 @@
 
 #include <boost/program_options.hpp>
 
-#include "advent/utils/arguments.hh"
 #include "advent/utils/base.hh"
 #include "advent/utils/solutions.hh"
 #include "advent/utils/timer.hh"
 
-namespace advent {
-
-const std::map<std::string, Test> TestOption::correct_options = {
-	{"no", Test::kNoTests},
-	{"only", Test::kOnlyTests},
-};
-
-}
-
 namespace {
 
-using advent::Arguments;
-using advent::Test;
-using advent::TestOption;
+///
+/// Arguments
+///
+struct Arguments {
+	/// Should the help message be shown?
+	bool show_help = false;
 
-namespace po = boost::program_options;
+	/// Which day to run?
+	advent::TaskID day_to_run = advent::TaskID::kAllDays;
+};
 
-template<typename Block, typename Handler>
-decltype(auto) exit_on_invalid_param(Block&& block, Handler&& handler) {
-	try {
-		return block();
-	} catch (const po::validation_error& ex) {
-		std::cerr << ex.what() << std::endl;
-		handler();
-		std::exit(0);
-	}
-}
-
+///
+/// Parse command line arguments
 Arguments parse_arguments(int argc, char** argv) {
+	namespace po = boost::program_options;
+
 	Arguments args;
 
 	po::options_description supported_options("Supported options");
@@ -55,15 +43,6 @@ Arguments parse_arguments(int argc, char** argv) {
 					args.show_help = value;
 				}),
 			"Show this help message."
-		)
-		(
-			"test,t",
-			po::value<TestOption>()->
-				value_name("TESTS")->
-				notifier([&args](const TestOption& opt) {
-					args.test = opt.test;
-				}),
-			"Choose mode for tests: NO (no tests), ONLY(only tests)"
 		)
 		(
 			"day,d",
@@ -79,29 +58,19 @@ Arguments parse_arguments(int argc, char** argv) {
 	po::options_description options;
 	options.add(supported_options);
 
-	return exit_on_invalid_param([&]{
-		po::variables_map vm;
-		auto parsed = po::command_line_parser(argc, argv)
-			.options(options)
-			.run();
-		po::store(parsed, vm);
-		po::notify(vm);
+	po::variables_map vm;
+	auto parsed = po::command_line_parser(argc, argv)
+		.options(options)
+		.run();
+	po::store(parsed, vm);
+	po::notify(vm);
 
-		if (args.show_help) {
-			std::cerr << options << std::endl;
-			std::exit(0);
-		}
-
-		return args;
-	}, [&]{
+	if (args.show_help) {
 		std::cerr << options << std::endl;
-	});
-}
+		std::exit(0);
+	}
 
-void run_tests_for_task(advent::Solutions& solutions, advent::TaskID task_id) {
-	auto day = solutions.get_task(task_id);
-	day->test_part_one();
-	day->test_part_two();
+	return args;
 }
 
 void run_task_solutions(advent::Solutions& solutions, advent::TaskID task_id) {
@@ -131,11 +100,6 @@ int main(int argc, char** argv) {
 	}
 
 	for (const auto& task : to_run) {
-		if (args.test != Test::kNoTests) {
-			run_tests_for_task(solutions, task);
-		}
-		if (args.test != Test::kOnlyTests) {
 			run_task_solutions(solutions, task);
-		}
 	}
 }

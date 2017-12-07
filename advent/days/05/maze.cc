@@ -10,28 +10,15 @@
 #include "advent/days/05/maze.hh"
 #include "advent/utils/assert.hh"
 #include "advent/utils/misc.hh"
-#include "advent/utils/tests.hh"
 
 namespace advent {
 
 namespace {
 
-using LocalTestData = BasicTestData<std::vector<int>, int>;
-
 ///
 /// Input for Day 04 puzzle.
 ///
 const std::string puzzle_input = "day_05_input.txt";
-
-///
-/// Test values and results for the first part of the puzzle.
-///
-const LocalTestData part_one_tests { {0, 3, 0, 1, -3}, 5 };
-
-///
-/// Test value and results for the second part of the puzzle.
-///
-const LocalTestData part_two_tests { {0, 3, 0, 1, -3}, 10 };
 
 }
 
@@ -51,18 +38,6 @@ void Day05::solve_part_two() {
 	if (lines) {
 		std::cout << solve_part_two_for_input(*lines) << std::endl;
 	}
-}
-
-// Override.
-void Day05::test_part_one() {
-	auto [input, expected] = part_one_tests;
-	TEST_EQ_V(solve_part_one_for_input(input), expected);
-}
-
-// Override.
-void Day05::test_part_two() {
-	auto [input, expected] = part_two_tests;
-	TEST_EQ_V(solve_part_two_for_input(input), expected);
 }
 
 std::string Day05::part_one() const {

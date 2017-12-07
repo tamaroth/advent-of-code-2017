@@ -11,38 +11,15 @@
 #include "advent/days/04/high_entropy_passphrases.hh"
 #include "advent/utils/assert.hh"
 #include "advent/utils/misc.hh"
-#include "advent/utils/tests.hh"
 
 namespace advent {
 
 namespace {
 
-using LocalTestData = std::vector<BasicTestData<std::string, bool>>;
-
 ///
 /// Input for Day 04 puzzle.
 ///
 const std::string puzzle_input = "day_04_input.txt";
-
-///
-/// Test values and results for the first part of the puzzle.
-///
-const LocalTestData part_one_tests {
-	{ "aa bb cc dd ee", true },
-	{ "aa bb cc dd aa", false },
-	{ "aa bb cc dd aaa", true },
-};
-
-///
-/// Test value and results for the second part of the puzzle.
-///
-const LocalTestData part_two_tests {
-	{ "abcde fghij", true },
-	{ "abcde xyz ecdab", false },
-	{ "a ab abc abd abf abj", true },
-	{ "iiii oiii ooii oooi oooo", true },
-	{ "oiii ioii iioi iiio", false },
-};
 
 }
 
@@ -73,20 +50,6 @@ void Day04::solve_part_two() {
 			}
 		}
 		std::cout << correct_passphrases << std::endl;
-	}
-}
-
-// Override.
-void Day04::test_part_one() {
-	for (auto& [input, expected] : part_one_tests) {
-		TEST_EQ(input, solve_part_one_for_input(input), expected);
-	}
-}
-
-// Override.
-void Day04::test_part_two() {
-	for (auto& [input, expected] : part_two_tests) {
-		TEST_EQ(input, solve_part_two_for_input(input), expected);
 	}
 }
 

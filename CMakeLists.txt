@@ -118,3 +118,4 @@ endif()
 ##
 
 add_subdirectory(advent)
+add_subdirectory(tests)
