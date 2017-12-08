@@ -10,6 +10,7 @@ set(DAYS_SOURCES
 	05/maze.cc
 	06/memory_reallocation.cc
 	07/recursive_circus.cc
+	08/registers.cc
 )
 
 add_library(days SHARED ${DAYS_SOURCES})
@@ -34,3 +35,8 @@ add_custom_command(TARGET days POST_BUILD
 add_custom_command(TARGET days POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy
 		${SRC_DIR}/advent/days/07/day_07_input.txt ${PROJECT_BINARY_DIR})
+
+## Day 08 input
+add_custom_command(TARGET days POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy
+		${SRC_DIR}/advent/days/08/day_08_input.txt ${PROJECT_BINARY_DIR})

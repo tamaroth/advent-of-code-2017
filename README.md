@@ -11,6 +11,7 @@
 | 05  | [A Maze of Twisty Trampolines, All Alike][day05] - [Solution][day05sol] |       2ms |     263ms |
 | 06  | [Memory Reallocation][day06] - [Solution][day06sol]                     |      22ms |       4µs |
 | 07  | [Recursive Circus][day07] - [Solution][day07sol]                        |      71ms |     136µs |
+| 08  | [I Heard You Like Registers][day08] - [Solution][day08sol]              |     866µs |     795µs |
 
 [day01]: https://adventofcode.com/2017/day/1
 [day01sol]: ./advent/days/01/inverse_captcha.cc#L72
@@ -26,6 +27,8 @@
 [day06sol]: ./advent/days/05/memory_reallocation.cc#L72
 [day07]: http://adventofcode.com/2017/day/7
 [day07sol]: ./advent/days/07/recursive_circus.cc#L64
+[day08]: http://adventofcode.com/2017/day/7
+[day08sol]: ./advent/days/08/registers.cc#L64
 
 ## Building
 To build the code you will need:

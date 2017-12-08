@@ -28,7 +28,8 @@ struct Arguments {
 };
 
 ///
-/// Parse command line arguments
+/// Parse command line arguments.
+///
 Arguments parse_arguments(int argc, char** argv) {
 	namespace po = boost::program_options;
 
