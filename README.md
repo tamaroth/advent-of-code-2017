@@ -29,6 +29,8 @@
 [day07sol]: ./advent/days/07/recursive_circus.cc#L64
 [day08]: http://adventofcode.com/2017/day/7
 [day08sol]: ./advent/days/08/registers.cc#L64
+[day09]: http://adventofcode.com/2017/day/7
+[day08sol]: ./advent/days/09/stream_processing.cc#L64
 
 ## Building
 To build the code you will need:
