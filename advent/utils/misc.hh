@@ -88,6 +88,8 @@ std::optional<std::vector<T>> read_lines_from_file(const std::string& file_name)
 	return lines;
 }
 
+std::optional<std::string> read_line_from_file(const std::string& file_name);
+
 #define __COMPACT_PRETTY_FUNCTION__ method_name(__FUNCTION__,__PRETTY_FUNCTION__)
 
 }

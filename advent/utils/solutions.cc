@@ -11,6 +11,7 @@
 #include "advent/days/06/memory_reallocation.hh"
 #include "advent/days/07/recursive_circus.hh"
 #include "advent/days/08/registers.hh"
+#include "advent/days/09/stream_processing.hh"
 #include "advent/utils/assert.hh"
 #include "advent/utils/base.hh"
 #include "advent/utils/container.hh"
@@ -62,6 +63,9 @@ std::shared_ptr<Task> Solutions::get_task(TaskID task) {
 			break;
 		case TaskID::kDay08:
 			solutions[task] = std::make_shared<Day08>();
+			break;
+		case TaskID::kDay09:
+			solutions[task] = std::make_shared<Day09>();
 			break;
 		default:
 			ABORT("unknown task");

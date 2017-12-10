@@ -11,6 +11,7 @@ set(DAYS_SOURCES
 	06/memory_reallocation.cc
 	07/recursive_circus.cc
 	08/registers.cc
+	09/stream_processing.cc
 )
 
 add_library(days SHARED ${DAYS_SOURCES})
@@ -40,3 +41,8 @@ add_custom_command(TARGET days POST_BUILD
 add_custom_command(TARGET days POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy
 		${SRC_DIR}/advent/days/08/day_08_input.txt ${PROJECT_BINARY_DIR})
+
+## Day 08 input
+add_custom_command(TARGET days POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy
+		${SRC_DIR}/advent/days/09/day_09_input.txt ${PROJECT_BINARY_DIR})
