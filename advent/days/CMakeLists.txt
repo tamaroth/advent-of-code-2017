@@ -12,6 +12,7 @@ set(DAYS_SOURCES
 	07/recursive_circus.cc
 	08/registers.cc
 	09/stream_processing.cc
+	10/knot_hash.cc
 )
 
 add_library(days SHARED ${DAYS_SOURCES})
