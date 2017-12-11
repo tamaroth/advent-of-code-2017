@@ -20,11 +20,13 @@ public:
 	CircularBuffer(int length);
 	~CircularBuffer();
 
+	CircularBuffer(const CircularBuffer&) = delete;
+	CircularBuffer(CircularBuffer&&) = default;
+
 	Buffer get(std::size_t start, std::size_t length) const;
 	void set(std::size_t start, const Buffer& replacement);
 	std::size_t get_size() const;
 
-private:
 	Buffer buffer;
 };
 
@@ -33,8 +35,6 @@ public:
 	Day10() = default;
 	~Day10() override = default;
 
-	virtual void set_up() override;
-
 	virtual void solve_part_one() override;
 	virtual void solve_part_two() override;
 
@@ -42,13 +42,12 @@ public:
 	virtual std::string part_two() const override;
 
 protected:
-	int solve_part_one_for_input();
-	int solve_part_two_for_input();
-
-	int get_hash(int length, const Buffer& lengths);
+	int solve_part_one_for_input(const std::string& input, int len = 256);
+	std::string solve_part_two_for_input(const std::string& input);
 
 private:
-	Buffer lengths;
+	CircularBuffer get_hash(int length, const Buffer& lengths, int rounds = 1);
+	void round(CircularBuffer& cb, int& start, int& skip, const Buffer& lengths);
 };
 
 }

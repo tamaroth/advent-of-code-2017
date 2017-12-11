@@ -4,7 +4,7 @@
 ///
 
 #include <algorithm>
-#include <regex>
+#include <iomanip>
 
 #include "advent/days/10/knot_hash.hh"
 #include "advent/utils/assert.hh"
@@ -77,21 +77,16 @@ std::size_t CircularBuffer::get_size() const {
 }
 
 // Override.
-void Day10::set_up() {
-	lengths = split_to<int>(puzzle_input, ",");
-}
-
-// Override.
 void Day10::solve_part_one() {
 	std::cout << part_one()
-			<< solve_part_one_for_input()
+			<< solve_part_one_for_input(puzzle_input)
 		<< std::endl;
 }
 
 // Override.
 void Day10::solve_part_two() {
 	std::cout << part_two()
-//			<< solve_part_two_for_input()
+			<< solve_part_two_for_input(puzzle_input)
 		<< std::endl;
 }
 
@@ -105,17 +100,55 @@ std::string Day10::part_two() const {
 	return __COMPACT_PRETTY_FUNCTION__;
 }
 
-int Day10::solve_part_one_for_input() {
-	return get_hash(256, lengths);
+int Day10::solve_part_one_for_input(const std::string& input, int len) {
+	auto lengths = split_to<int>(input, ",");
+	auto sub = get_hash(len, lengths).get(0, 2);
+	return (sub[0]*sub[1]);
+}
+
+std::string Day10::solve_part_two_for_input(const std::string& input) {
+	std::vector<int> seq = {17, 31, 73, 47, 23};
+	std::vector<int> lengths;
+	for (const auto& ch : input) {
+		lengths.push_back(static_cast<int>(ch));
+	}
+	lengths.insert(lengths.end(), seq.begin(), seq.end());
+
+	auto sparse_hash = get_hash(256, lengths, 64);
+	std::vector<int> dense;
+	for (int i = 0; i < 16; i++) {
+		auto sub = sparse_hash.get(i*16, 16);
+		int r = 0;
+		for (const auto& ch : sub) {
+			r ^= ch;
+		}
+		dense.push_back(r);
+	}
+
+	std::stringstream stream;
+	for (const auto& e : dense) {
+		stream << std::setfill('0') << std::setw(2) << std::hex << e;
+	}
+
+	return stream.str();
 }
 
 ///
 /// Method computes knot hash for the given lengths with the given length of the buffer.
 ///
-int Day10::get_hash(int size, const Buffer& lengths) {
+CircularBuffer Day10::get_hash(int size, const Buffer& lengths, int rounds) {
 	CircularBuffer cb(size);
 	int current_position = 0;
 	int skip = 0;
+
+	while (rounds--) {
+		round(cb, current_position, skip, lengths);
+	}
+
+	return cb;
+}
+
+void Day10::round(CircularBuffer& cb, int& current_position, int& skip, const Buffer& lengths) {
 	for (const auto& length : lengths) {
 		auto sub = cb.get(current_position, length);
 		std::reverse(sub.begin(), sub.end());
@@ -123,9 +156,6 @@ int Day10::get_hash(int size, const Buffer& lengths) {
 		current_position = (current_position + length + skip) % cb.get_size();
 		skip++;
 	}
-
-	auto sub = cb.get(0, 2);
-	return sub[0]*sub[1];
 }
 
 }

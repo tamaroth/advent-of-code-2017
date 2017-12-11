@@ -38,12 +38,25 @@ TEST_F(CircularBufferTests, set_sets_new_values) {
 
 class Day10Tests: public TestsBase, public Day10 {};
 
-TEST_F(Day10Tests, get_hash_computes_correct_hash) {
-	Buffer lengths = {3,4,1,5};
+TEST_F(Day10Tests, solve_first_part_solves_correctly) {
+	std::string input = "3,4,1,5";
 
-	auto hash = get_hash(5, lengths);
+	auto hash = solve_part_one_for_input(input, 5);
 
 	ASSERT_EQ(hash, 12);
+}
+
+TEST_F(Day10Tests, solve_part_two_for_input_solves_correctly) {
+	std::vector<std::pair<std::string, std::string>> inputs = {
+		{"", "a2582a3a0e66e6e86e3812dcb672a272" },
+		{"AoC 2017", "33efeb34ea91902bb2f59c9920caa6cd" },
+		{"1,2,3", "3efbe78a8d82f29979031a4aa0b16a9d" },
+		{"1,2,4", "63960835bcdc130f0b66d7ff4f6a5a8e" },
+	};
+
+	for (const auto& [input, expected] : inputs) {
+		ASSERT_EQ(solve_part_two_for_input(input), expected);
+	}
 }
 
 }
