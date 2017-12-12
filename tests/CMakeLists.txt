@@ -16,6 +16,7 @@ set(TESTS_SOURCES
 	day_08_tests.cc
 	day_09_tests.cc
 	day_10_tests.cc
+	day_11_tests.cc
 )
 add_executable(tests ${TESTS_SOURCES})
 target_include_directories(tests PUBLIC "${PROJECT_SOURCE_DIR}")
