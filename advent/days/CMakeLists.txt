@@ -43,7 +43,7 @@ add_custom_command(TARGET days POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy
 		${SRC_DIR}/advent/days/08/day_08_input.txt ${PROJECT_BINARY_DIR})
 
-## Day 08 input
+## Day 09 input
 add_custom_command(TARGET days POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy
 		${SRC_DIR}/advent/days/09/day_09_input.txt ${PROJECT_BINARY_DIR})

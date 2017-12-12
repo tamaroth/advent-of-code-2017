@@ -13,18 +13,9 @@
 
 namespace advent {
 
-namespace {
-
-///
-/// Input for Day 09 puzzle.
-///
-const std::string puzzle_input = "day_09_input.txt";
-
-}
-
 void Day09::set_up() {
 	garbage = 0;
-	auto line = read_line_from_file(puzzle_input);
+	auto line = read_line_from_file("day_09_input.txt");
 	if (line) {
 		day_09_input = *line;
 	}
@@ -44,9 +35,12 @@ void Day09::solve_part_two() {
 		<< std::endl;
 }
 
+// Override.
 std::string Day09::part_one() const {
 	return __COMPACT_PRETTY_FUNCTION__;
 }
+
+// Override.
 std::string Day09::part_two() const {
 	return __COMPACT_PRETTY_FUNCTION__;
 }

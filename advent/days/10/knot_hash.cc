@@ -7,7 +7,6 @@
 #include <iomanip>
 
 #include "advent/days/10/knot_hash.hh"
-#include "advent/utils/assert.hh"
 #include "advent/utils/misc.hh"
 
 namespace advent {
@@ -21,8 +20,14 @@ const std::string puzzle_input = "129,154,49,198,200,133,97,254,41,6,2,1,255,0,1
 
 }
 
+///
+/// Construction of the default CircularBuffer.
+///
 CircularBuffer::CircularBuffer() : CircularBuffer(256) {}
 
+///
+/// Construction of the CircularBuffer for the given length.
+///
 CircularBuffer::CircularBuffer(int length) {
 	buffer.reserve(length);
 	for (int i = 0; i < length; i++) {
@@ -30,8 +35,14 @@ CircularBuffer::CircularBuffer(int length) {
 	}
 }
 
+///
+/// Destruction of the CircularBuffer.
+///
 CircularBuffer::~CircularBuffer() = default;
 
+///
+/// Gets a copy of underlying buffer in the given range (can loop).
+///
 Buffer CircularBuffer::get(std::size_t start, std::size_t length) const {
 	Buffer result;
 	auto max = buffer.size();
@@ -53,6 +64,10 @@ Buffer CircularBuffer::get(std::size_t start, std::size_t length) const {
 	return result;
 }
 
+///
+/// Sets the underlying buffer with the given one, replacing old values with
+/// the new ones (can loop).
+///
 void CircularBuffer::set(std::size_t start, const Buffer& replacement) {
 	auto max = buffer.size();
 	auto length = replacement.size();
@@ -72,6 +87,9 @@ void CircularBuffer::set(std::size_t start, const Buffer& replacement) {
 	}
 }
 
+///
+/// @returns the size of the underlying buffer.
+///
 std::size_t CircularBuffer::get_size() const {
 	return buffer.size();
 }
@@ -100,12 +118,21 @@ std::string Day10::part_two() const {
 	return __COMPACT_PRETTY_FUNCTION__;
 }
 
+///
+/// Solves the first part of the puzzle.
+/// Computes simple has of the given input with the given length of the
+/// circular buffer.
+///
 int Day10::solve_part_one_for_input(const std::string& input, int len) {
 	auto lengths = split_to<int>(input, ",");
 	auto sub = get_hash(len, lengths).get(0, 2);
 	return (sub[0]*sub[1]);
 }
 
+///
+/// Solves the second part of the puzzle.
+/// Computes the hash of the given input.
+///
 std::string Day10::solve_part_two_for_input(const std::string& input) {
 	std::vector<int> seq = {17, 31, 73, 47, 23};
 	std::vector<int> lengths;
@@ -134,7 +161,8 @@ std::string Day10::solve_part_two_for_input(const std::string& input) {
 }
 
 ///
-/// Method computes knot hash for the given lengths with the given length of the buffer.
+/// Method computes knot hash for the given @a size with the given @a length of
+/// the buffer in the number of @a rounds.
 ///
 CircularBuffer Day10::get_hash(int size, const Buffer& lengths, int rounds) {
 	CircularBuffer cb(size);
@@ -148,6 +176,9 @@ CircularBuffer Day10::get_hash(int size, const Buffer& lengths, int rounds) {
 	return cb;
 }
 
+///
+/// Computes a single round of the knot hash.
+///
 void Day10::round(CircularBuffer& cb, int& current_position, int& skip, const Buffer& lengths) {
 	for (const auto& length : lengths) {
 		auto sub = cb.get(current_position, length);

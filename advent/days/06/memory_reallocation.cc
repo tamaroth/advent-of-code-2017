@@ -5,11 +5,8 @@
 
 #include <algorithm>
 #include <iostream>
-#include <string>
-#include <vector>
 
 #include "advent/days/06/memory_reallocation.hh"
-#include "advent/utils/assert.hh"
 #include "advent/utils/misc.hh"
 
 namespace advent {
@@ -17,8 +14,6 @@ namespace advent {
 using namespace std::string_literals;
 
 namespace {
-
-//using LocalTestData = BasicTestData<std::vector<int>, int>;
 
 ///
 /// Input for Day 04 puzzle.
@@ -58,9 +53,12 @@ void Day06::solve_part_two() {
 		<< std::endl;
 }
 
+// Override.
 std::string Day06::part_one() const {
 	return __COMPACT_PRETTY_FUNCTION__;
 }
+
+// Override.
 std::string Day06::part_two() const {
 	return __COMPACT_PRETTY_FUNCTION__;
 }

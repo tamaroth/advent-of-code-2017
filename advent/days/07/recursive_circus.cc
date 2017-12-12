@@ -1,39 +1,25 @@
 /// @file
 ///
-/// Day 06: Memory Reallocation
+/// Day 07: Recursive Circus
 ///
 
 #include <algorithm>
 #include <iostream>
-#include <map>
 #include <regex>
 #include <stdexcept>
-#include <string>
-#include <vector>
 
 #include <boost/algorithm/string/replace.hpp>
 
 #include "advent/days/07/recursive_circus.hh"
 #include "advent/utils/container.hh"
-#include "advent/utils/assert.hh"
-#include "advent/utils/misc.hh"
 
 namespace advent {
 
 using namespace std::string_literals;
 
-namespace {
-
-///
-/// Input for Day 04 puzzle.
-///
-const std::string puzzle_input = "day_07_input.txt";
-
-}
-
 // Override
 void Day07::set_up() {
-	db = file_to_database(puzzle_input);
+	db = file_to_database("day_07_input.txt");
 }
 
 // Override.
@@ -52,9 +38,12 @@ void Day07::solve_part_two() {
 		<< std::endl;
 }
 
+// Override.
 std::string Day07::part_one() const {
 	return __COMPACT_PRETTY_FUNCTION__;
 }
+
+// Override.
 std::string Day07::part_two() const {
 	return __COMPACT_PRETTY_FUNCTION__;
 }
@@ -107,7 +96,7 @@ int Day07::weight_to_int(const std::string& weight_str) {
 ///
 /// Converts lines to a database representation.
 ///
-DB Day07::lines_to_database(std::vector<std::string>& lines) {
+DB Day07::lines_to_database(Lines<>& lines) {
 	DB db;
 	for (auto& line : lines) {
 		line.erase(std::remove(line.begin(), line.end(), ','), line.end());
@@ -139,10 +128,7 @@ DB Day07::lines_to_database(std::vector<std::string>& lines) {
 ///
 DB Day07::file_to_database(const std::string& file_name) {
 	auto lines = read_lines_from_file<std::string>(file_name);
-	if (!lines) {
-		throw std::invalid_argument("could not read any lines from the file");
-	}
-	return lines_to_database(*lines);
+	return lines_to_database(lines);
 }
 
 ///

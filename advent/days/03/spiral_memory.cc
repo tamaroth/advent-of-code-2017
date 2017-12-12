@@ -1,6 +1,6 @@
 /// @file
 ///
-/// Day 02: Corruption Checksum
+/// Day 03: Spiral Memory
 ///
 
 #include <algorithm>
@@ -8,7 +8,6 @@
 #include <iostream>
 
 #include "advent/days/03/spiral_memory.hh"
-#include "advent/utils/assert.hh"
 #include "advent/utils/misc.hh"
 
 namespace advent {

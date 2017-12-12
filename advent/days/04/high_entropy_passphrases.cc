@@ -9,48 +9,36 @@
 #include <unordered_set>
 
 #include "advent/days/04/high_entropy_passphrases.hh"
-#include "advent/utils/assert.hh"
-#include "advent/utils/misc.hh"
 
 namespace advent {
 
-namespace {
-
-///
-/// Input for Day 04 puzzle.
-///
-const std::string puzzle_input = "day_04_input.txt";
-
+// Override.
+void Day04::set_up() {
+	lines = read_lines_from_file("day_04_input.txt");
 }
 
 // Override.
 void Day04::solve_part_one() {
 	std::cout << part_one();
-	auto lines = read_lines_from_file<std::string>(puzzle_input);
-	if (lines) {
-		int correct_passphrases = 0;
-		for (const auto& line : *lines) {
-			if (solve_part_one_for_input(line)) {
-				correct_passphrases++;
-			}
+	int correct_passphrases = 0;
+	for (const auto& line : lines) {
+		if (solve_part_one_for_input(line)) {
+			correct_passphrases++;
 		}
-		std::cout << correct_passphrases << std::endl;
 	}
+	std::cout << correct_passphrases << std::endl;
 }
 
 // Override.
 void Day04::solve_part_two() {
 	std::cout << part_two();
-	auto lines = read_lines_from_file<std::string>(puzzle_input);
-	if (lines) {
-		int correct_passphrases = 0;
-		for (const auto& line : *lines) {
-			if (solve_part_two_for_input(line)) {
-				correct_passphrases++;
-			}
+	int correct_passphrases = 0;
+	for (const auto& line : lines) {
+		if (solve_part_two_for_input(line)) {
+			correct_passphrases++;
 		}
-		std::cout << correct_passphrases << std::endl;
 	}
+	std::cout << correct_passphrases << std::endl;
 }
 
 // Override.

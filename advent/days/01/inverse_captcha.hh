@@ -1,9 +1,8 @@
 /// @file
 ///
-/// Day 1: Inverse Captcha
+/// Day 01: Inverse Captcha
 ///
 
-#include <iostream>
 #include <string>
 
 #include "advent/utils/base.hh"

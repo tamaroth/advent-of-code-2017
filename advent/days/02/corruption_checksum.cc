@@ -6,17 +6,13 @@
 #include <algorithm>
 #include <iostream>
 #include <string>
-#include <vector>
 
 #include "advent/days/02/corruption_checksum.hh"
-#include "advent/utils/assert.hh"
 #include "advent/utils/misc.hh"
 
 namespace advent {
 
 namespace {
-
-//using LocalTestData = BasicTestData<Matrix, int>;
 
 ///
 /// Input for Day 02 puzzle.
@@ -88,23 +84,23 @@ std::string Day02::part_two() const {
 int Day02::solve_part_one_for_input(const Matrix& input) {
 	int sum = 0;
 	for (const auto& row : input) {
-		sum += (*std::max_element(row.begin(),row.end()) - *std::min_element(row.begin(), row.end()));
+		sum += (
+			*std::max_element(row.begin(), row.end()) -
+			*std::min_element(row.begin(), row.end())
+		);
 	}
 
 	return sum;
 }
 
 ///
-/// Method finds in each row of a matrix two numbers that are divisible, divides them and returns its sum.
+/// Method finds in each row of a matrix two numbers that are divisible, divides
+/// them and returns its sum.
 ///
 int Day02::solve_part_two_for_input(const Matrix& input) {
 	int sum = 0;
 	for (const auto& row : input) {
-		if (auto result = find_divisible(row); result != -1) {
-			sum += result;
-		} else {
-			LOG_MSG("could not find divisible values");
-		}
+		sum += find_divisible(row);
 	}
 	return sum;
 }

@@ -11,10 +11,11 @@
 #include <vector>
 
 #include "advent/utils/base.hh"
+#include "advent/utils/misc.hh"
 
 namespace advent {
 
-using Children = std::vector<std::string>;
+using Children = Lines<>;
 using Value = std::pair<int, std::string>;
 
 struct DBEntry {
@@ -41,7 +42,7 @@ protected:
 	std::string solve_part_one_for_input(const DB& db);
 	int solve_part_two_for_input(const DB& db, const std::string& root);
 
-	DB lines_to_database(std::vector<std::string>& lines);
+	DB lines_to_database(Lines<>& lines);
 	DB file_to_database(const std::string& file_name);
 	int weight_to_int(const std::string& weight_str);
 

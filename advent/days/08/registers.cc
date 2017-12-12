@@ -1,30 +1,20 @@
 /// @file
 ///
-/// Day 06: Memory Reallocation
+/// Day 08: I Heard You Like Registers
 ///
 
 #include <limits>
 #include <regex>
 
 #include "advent/days/08/registers.hh"
-#include "advent/utils/assert.hh"
 #include "advent/utils/container.hh"
 #include "advent/utils/misc.hh"
 
 namespace advent {
 
-namespace {
-
-///
-/// Input for Day 08 puzzle.
-///
-const std::string puzzle_input = "day_08_input.txt";
-
-}
-
 // Override.
 void Day08::set_up() {
-	instruction_set = get_instructions_from_file(puzzle_input);
+	instruction_set = get_instructions_from_file("day_08_input.txt");
 }
 
 // Override.
@@ -41,9 +31,12 @@ void Day08::solve_part_two() {
 		<< std::endl;
 }
 
+// Override.
 std::string Day08::part_one() const {
 	return __COMPACT_PRETTY_FUNCTION__;
 }
+
+// Override.
 std::string Day08::part_two() const {
 	return __COMPACT_PRETTY_FUNCTION__;
 }
@@ -63,6 +56,9 @@ int Day08::solve_part_two_for_input() {
 	return get_maximal_register_value_during_execution(instruction_set);
 }
 
+///
+/// Converts the given string into an instruction line.
+///
 Day08::InstructionLine Day08::parse_instruction_line(const std::string& line) {
 	std::regex rx(R"((\w+) (inc|dec) ([-0-9]+) if (\w+) (<=|>=|<|>|!=|==) ([-0-9]+))");
 	std::smatch match;
@@ -77,6 +73,9 @@ Day08::InstructionLine Day08::parse_instruction_line(const std::string& line) {
 	};
 }
 
+///
+/// Converts series of strings of instructions into a series of instructions.
+///
 Day08::Instructions Day08::convert_lines_to_instructions(const std::vector<std::string>& lines) {
 	Instructions instructions;
 	for (const auto& line : lines) {
@@ -85,6 +84,9 @@ Day08::Instructions Day08::convert_lines_to_instructions(const std::vector<std::
 	return instructions;
 }
 
+///
+/// Executes the given series of instructions and @returns the resulting state of registers.
+///
 Day08::Registers Day08::execute_instructions(const Day08::Instructions& instructions) {
 	Registers registers;
 	for (const auto& instruction : instructions) {
@@ -93,6 +95,10 @@ Day08::Registers Day08::execute_instructions(const Day08::Instructions& instruct
 	return registers;
 }
 
+///
+/// Finds the maximal value of any register during the execution of the given
+/// series of instructions.
+///
 int Day08::get_maximal_register_value_during_execution(
 	const Day08::Instructions& instructions) {
 	Registers registers;
@@ -103,6 +109,9 @@ int Day08::get_maximal_register_value_during_execution(
 	return max;
 }
 
+///
+/// Executes a single instruction and returns the new value of the target register.
+///
 int Day08::execute_instruction(Registers& registers, const InstructionLine& instruction) {
 	if (!contains(registers, instruction.reg)) {
 		registers[instruction.reg] = 0;
@@ -118,6 +127,9 @@ int Day08::execute_instruction(Registers& registers, const InstructionLine& inst
 	return registers[instruction.reg];
 }
 
+///
+/// @returns the maximal value from among the registers.
+///
 int Day08::get_maximal_register_value(const Registers& registers) {
 	int max = std::numeric_limits<int>::min();
 	for (const auto& reg : registers) {
@@ -126,14 +138,17 @@ int Day08::get_maximal_register_value(const Registers& registers) {
 	return max;
 }
 
+///
+/// Reads instructions from the given text file.
+///
 Day08::Instructions Day08::get_instructions_from_file(const std::string& file_name) {
-	auto lines = read_lines_from_file<std::string>(file_name);
-	if (!lines) {
-		throw std::invalid_argument("could not read any lines from the file");
-	}
-	return convert_lines_to_instructions(*lines);
+	auto lines = read_lines_from_file(file_name);
+	return convert_lines_to_instructions(lines);
 }
 
+///
+/// Converts string to register operation.
+///
 Day08::Operation Day08::to_operation(const std::string& line) {
 	if (line == "inc") {
 		return Operation::kInc;
@@ -141,6 +156,9 @@ Day08::Operation Day08::to_operation(const std::string& line) {
 	return Operation::kDec;
 }
 
+///
+/// Converts string to a condition.
+///
 Day08::Condition Day08::to_condition(const std::string& reg,
 		const std::string& cond, const std::string& val) {
 	Cond cd;
@@ -164,6 +182,9 @@ Day08::Condition Day08::to_condition(const std::string& reg,
 	};
 }
 
+///
+/// Checks the condition for the given registers.
+///
 bool Day08::check_condition(Registers& registers, const Condition& cond) {
 	if (!contains(registers, cond.reg)) {
 		registers[cond.reg] = 0;

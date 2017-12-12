@@ -4,45 +4,35 @@
 ///
 
 #include <iostream>
-#include <string>
-#include <vector>
 
 #include "advent/days/05/maze.hh"
-#include "advent/utils/assert.hh"
-#include "advent/utils/misc.hh"
 
 namespace advent {
 
-namespace {
-
-///
-/// Input for Day 04 puzzle.
-///
-const std::string puzzle_input = "day_05_input.txt";
-
+void Day05::set_up() {
+	lines = read_lines_from_file<int>("day_05_input.txt");
 }
 
 // Override.
 void Day05::solve_part_one() {
-	std::cout << part_one();
-	auto lines = read_lines_from_file<int>(puzzle_input);
-	if (lines) {
-		std::cout << solve_part_one_for_input(*lines) << std::endl;
-	}
+	std::cout << part_one()
+			<< solve_part_one_for_input(lines)
+		<< std::endl;
 }
 
 // Override.
 void Day05::solve_part_two() {
-	std::cout << part_two();
-	auto lines = read_lines_from_file<int>(puzzle_input);
-	if (lines) {
-		std::cout << solve_part_two_for_input(*lines) << std::endl;
-	}
+	std::cout << part_two()
+			<< solve_part_two_for_input(lines)
+		 << std::endl;
 }
 
+// Override.
 std::string Day05::part_one() const {
 	return __COMPACT_PRETTY_FUNCTION__;
 }
+
+// Override.
 std::string Day05::part_two() const {
 	return __COMPACT_PRETTY_FUNCTION__;
 }

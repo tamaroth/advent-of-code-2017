@@ -1,6 +1,6 @@
 /// @file
 ///
-/// Day 1: Inverse Captcha
+/// Day 01: Inverse Captcha
 ///
 
 #include <iostream>
@@ -8,7 +8,6 @@
 #include <vector>
 
 #include "advent/days/01/inverse_captcha.hh"
-#include "advent/utils/assert.hh"
 #include "advent/utils/misc.hh"
 
 namespace advent {
@@ -57,9 +56,12 @@ void Day01::solve_part_two() {
 		<< std::endl;
 }
 
+// Override.
 std::string Day01::part_one() const {
 	return __COMPACT_PRETTY_FUNCTION__;
 }
+
+// Override.
 std::string Day01::part_two() const {
 	return __COMPACT_PRETTY_FUNCTION__;
 }
@@ -70,11 +72,6 @@ std::string Day01::part_two() const {
 /// buffer.
 ///
 int Day01::solve_for_input(const std::string& input, int distance) {
-	if (input.length() <= 1) {
-		LOG_MSG("too short input");
-		return -1;
-	}
-
 	int sum = 0;
 	int length = input.length();
 	for (int i = 0; i < length; ++i) {
