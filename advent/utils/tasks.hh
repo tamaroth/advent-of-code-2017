@@ -70,8 +70,9 @@ enum class TaskID {
 	kDay09,
 	kDay10,
 	kDay11,
+	kDay12,
 	kFirst = kDay01,
-	kLast = kDay11,
+	kLast = kDay12,
 	kAllDays
 };
 

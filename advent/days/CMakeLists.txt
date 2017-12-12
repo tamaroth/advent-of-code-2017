@@ -14,6 +14,7 @@ set(DAYS_SOURCES
 	09/stream_processing.cc
 	10/knot_hash.cc
 	11/hex_ed.cc
+	12/digital_plumber.cc
 )
 
 add_library(days SHARED ${DAYS_SOURCES})
@@ -53,3 +54,8 @@ add_custom_command(TARGET days POST_BUILD
 add_custom_command(TARGET days POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy
 		${SRC_DIR}/advent/days/11/day_11_input.txt ${PROJECT_BINARY_DIR})
+
+## Day 12 input
+add_custom_command(TARGET days POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy
+		${SRC_DIR}/advent/days/12/day_12_input.txt ${PROJECT_BINARY_DIR})
