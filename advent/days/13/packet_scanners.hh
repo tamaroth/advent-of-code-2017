@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include <optional>
 #include <vector>
 
 #include "advent/utils/base.hh"

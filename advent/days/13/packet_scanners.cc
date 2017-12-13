@@ -54,9 +54,9 @@ int Day13::solve_part_one_for_input() {
 ///
 int Day13::solve_part_two_for_input(const Layers& layers_to_check) {
 	int delay = 1;
-	while (delay >= 0) {
+	while (delay > 0) {
 		auto severity = compute_severity(layers_to_check, delay);
-		if (severity == -1) {
+		if (severity == 0) {
 			return delay;
 		}
 		delay++;
@@ -69,15 +69,8 @@ int Day13::solve_part_two_for_input(const Layers& layers_to_check) {
 /// depth is caught.
 ///
 bool Day13::is_caught(int layer, int depth) {
-	if (depth == 1) {
-		return true;
-	}
-
 	auto cycle = 2 * (depth - 1);
-	if ((layer % cycle) == 0) {
-		return true;
-	}
-	return false;
+	return ((layer % cycle) == 0);
 }
 
 ///
@@ -86,14 +79,15 @@ bool Day13::is_caught(int layer, int depth) {
 ///
 int Day13::compute_severity(const Layers& layers, int delay) {
 	int severity = 0;
-	int caught = 0;
 	for (const auto& [layer, depth] : layers) {
 		if (is_caught(layer+delay, depth)) {
 			severity += (layer * depth);
-			caught++;
+			if (delay) {
+				return -1;
+			}
 		}
 	}
-	return caught ? severity : -1;
+	return severity;
 }
 
 }
