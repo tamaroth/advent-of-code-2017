@@ -12,6 +12,11 @@
 | 06  | [Memory Reallocation][day06] - [Solution][day06sol]                     |      22ms |       4µs |
 | 07  | [Recursive Circus][day07] - [Solution][day07sol]                        |      71ms |     136µs |
 | 08  | [I Heard You Like Registers][day08] - [Solution][day08sol]              |     866µs |     795µs |
+| 09  | [Stream Processing][day09] - [Solution][day09sol]                       |     372µs |       3µs |
+| 10  | [Knot Hash][day10] - [Solution][day10sol]                               |     217µs |       4ms |
+| 11  | [Hex Ed][day11] - [Solution][day11sol]                                  |      38ms |       4µs |
+| 12  | [Digital Plumber][day12] - [Solution][day12sol]                         |     314µs |      23ms |
+| 13  | [Packet Scanners][day13] - [Solution][day13sol]                         |      15µs |    3941ms |
 
 [day01]: https://adventofcode.com/2017/day/1
 [day01sol]: ./advent/days/01/inverse_captcha.cc#L72
@@ -27,10 +32,18 @@
 [day06sol]: ./advent/days/05/memory_reallocation.cc#L72
 [day07]: http://adventofcode.com/2017/day/7
 [day07sol]: ./advent/days/07/recursive_circus.cc#L64
-[day08]: http://adventofcode.com/2017/day/7
-[day08sol]: ./advent/days/08/registers.cc#L64
-[day09]: http://adventofcode.com/2017/day/7
-[day08sol]: ./advent/days/09/stream_processing.cc#L64
+[day08]: http://adventofcode.com/2017/day/8
+[day08sol]: ./advent/days/08/registers.cc#L47
+[day09]: http://adventofcode.com/2017/day/9
+[day09sol]: ./advent/days/09/stream_processing.cc#L51
+[day10]: http://adventofcode.com/2017/day/10
+[day10sol]: ./advent/days/10/knot_hash.cc#L126
+[day11]: http://adventofcode.com/2017/day/11
+[day11sol]: ./advent/days/11/hex_ed.cc#L43
+[day12]: http://adventofcode.com/2017/day/12
+[day12sol]: ./advent/days/12/digital_plumber.cc#L47
+[day13]: http://adventofcode.com/2017/day/13
+[day13sol]: ./advent/days/13/packet_scanners.cc#L48
 
 ## Building
 To build the code you will need:
