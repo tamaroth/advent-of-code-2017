@@ -16,7 +16,7 @@
 | 10  | [Knot Hash][day10] - [Solution][day10sol]                               |     217µs |       4ms |
 | 11  | [Hex Ed][day11] - [Solution][day11sol]                                  |      38ms |       4µs |
 | 12  | [Digital Plumber][day12] - [Solution][day12sol]                         |     314µs |      23ms |
-| 13  | [Packet Scanners][day13] - [Solution][day13sol]                         |      15µs |    3941ms |
+| 13  | [Packet Scanners][day13] - [Solution][day13sol]                         |      15µs |     341ms |
 
 [day01]: https://adventofcode.com/2017/day/1
 [day01sol]: ./advent/days/01/inverse_captcha.cc#L72
