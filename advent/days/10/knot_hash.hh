@@ -41,13 +41,15 @@ public:
 	virtual std::string part_one() const override;
 	virtual std::string part_two() const override;
 
+	static std::string compute_hash_for_input(const std::string& input);
+
 protected:
 	int solve_part_one_for_input(const std::string& input, int len = 256);
 	std::string solve_part_two_for_input(const std::string& input);
 
 private:
-	CircularBuffer get_hash(int length, const Buffer& lengths, int rounds = 1);
-	void round(CircularBuffer& cb, int& start, int& skip, const Buffer& lengths);
+	static CircularBuffer get_hash(int length, const Buffer& lengths, int rounds = 1);
+	static void round(CircularBuffer& cb, int& start, int& skip, const Buffer& lengths);
 };
 
 }

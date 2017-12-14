@@ -59,6 +59,7 @@ include (ExternalProject)
 set_directory_properties(PROPERTIES EP_PREFIX ${BINARY_EXTERNAL_DIR})
 
 include(boost)
+include(fmt)
 
 ##
 ## Compiler options.
@@ -74,11 +75,6 @@ set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-g -O3")
 
 # C++1z is required.
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1z -pedantic")
-
-# Optimizations.
-if(CLUSTY_FORCE_OPTIMIZATIONS)
-	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O3")
-endif()
 
 # Abort compilation upon the first error.
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wfatal-errors")

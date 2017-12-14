@@ -134,6 +134,10 @@ int Day10::solve_part_one_for_input(const std::string& input, int len) {
 /// Computes the hash of the given input.
 ///
 std::string Day10::solve_part_two_for_input(const std::string& input) {
+	return compute_hash_for_input(input);
+}
+
+std::string Day10::compute_hash_for_input(const std::string& input) {
 	std::vector<int> seq = {17, 31, 73, 47, 23};
 	std::vector<int> lengths;
 	for (const auto& ch : input) {

@@ -16,11 +16,15 @@ set(DAYS_SOURCES
 	11/hex_ed.cc
 	12/digital_plumber.cc
 	13/packet_scanners.cc
+	14/disk_defragmentation.cc
 )
 
 add_library(days SHARED ${DAYS_SOURCES})
 target_include_directories(days PUBLIC ${SRC_DIR})
-target_link_libraries(days PUBLIC boost)
+target_link_libraries(days PUBLIC
+	boost
+	fmt
+)
 
 ##
 ## Copy input files for certain days
