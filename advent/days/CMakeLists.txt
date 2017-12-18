@@ -20,6 +20,7 @@ set(DAYS_SOURCES
 	15/dueling_generators.cc
 	16/permutation_promenade.cc
 	17/spinlock.cc
+	18/duet.cc
 )
 
 add_library(days SHARED ${DAYS_SOURCES})
@@ -77,3 +78,8 @@ add_custom_command(TARGET days POST_BUILD
 add_custom_command(TARGET days POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy
 		${SRC_DIR}/advent/days/16/day_16_input.txt ${PROJECT_BINARY_DIR})
+
+## Day 18 input
+add_custom_command(TARGET days POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy
+		${SRC_DIR}/advent/days/18/day_18_input.txt ${PROJECT_BINARY_DIR})
