@@ -17,6 +17,7 @@
 | 11  | [Hex Ed][day11] - [Solution][day11sol]                                  |      38ms |       4µs |
 | 12  | [Digital Plumber][day12] - [Solution][day12sol]                         |     314µs |      23ms |
 | 13  | [Packet Scanners][day13] - [Solution][day13sol]                         |      15µs |     341ms |
+| 14  | [Disk Defragmentation][day14] - [Solution][day14sol]                    |      18ms |      15ms |
 
 [day01]: https://adventofcode.com/2017/day/1
 [day01sol]: ./advent/days/01/inverse_captcha.cc#L72
@@ -44,6 +45,8 @@
 [day12sol]: ./advent/days/12/digital_plumber.cc#L47
 [day13]: http://adventofcode.com/2017/day/13
 [day13sol]: ./advent/days/13/packet_scanners.cc#L48
+[day14]: http://adventofcode.com/2017/day/13
+[day14sol]: ./advent/days/14/disk_defragmentation.cc#L48
 
 ## Building
 To build the code you will need:
