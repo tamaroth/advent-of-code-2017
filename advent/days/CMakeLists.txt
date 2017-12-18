@@ -19,6 +19,7 @@ set(DAYS_SOURCES
 	14/disk_defragmentation.cc
 	15/dueling_generators.cc
 	16/permutation_promenade.cc
+	17/spinlock.cc
 )
 
 add_library(days SHARED ${DAYS_SOURCES})
