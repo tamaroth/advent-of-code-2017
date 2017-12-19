@@ -21,6 +21,7 @@
 #include "advent/days/16/permutation_promenade.hh"
 #include "advent/days/17/spinlock.hh"
 #include "advent/days/18/duet.hh"
+#include "advent/days/19/tubes.hh"
 #include "advent/utils/assert.hh"
 #include "advent/utils/base.hh"
 #include "advent/utils/container.hh"
@@ -102,6 +103,9 @@ std::shared_ptr<Task> Solutions::get_task(TaskID task) {
 			break;
 		case TaskID::kDay18:
 			solutions[task] = std::make_shared<Day18>();
+			break;
+		case TaskID::kDay19:
+			solutions[task] = std::make_shared<Day19>();
 			break;
 		default:
 			ABORT("unknown task");

@@ -24,6 +24,7 @@ set(TESTS_SOURCES
 	day_16_tests.cc
 	day_17_tests.cc
 	day_18_tests.cc
+	day_19_tests.cc
 )
 
 add_executable(tests ${TESTS_SOURCES})
