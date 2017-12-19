@@ -9,10 +9,14 @@
 #include <deque>
 #include <map>
 #include <mutex>
+#include <optional>
+#include <ostream>
 #include <string>
 #include <vector>
+#include <variant>
 
 #include "advent/utils/base.hh"
+#include "advent/utils/misc.hh"
 
 namespace advent {
 
@@ -20,90 +24,119 @@ class Queue;
 
 using REG = char;
 using VALUE = long long;
+using REGVALUE = std::variant<REG, VALUE>;
+using Registers = std::map<REG, VALUE>;
 
 struct CodeLine {
 	std::string	instruction;
-	REG			destination;
-	REG			source;
-	VALUE		value;
+	REGVALUE first;
+	REGVALUE second;
 };
 
-struct CodeLines {
-	CodeLines() = default;
-	CodeLines(std::vector<std::string> source) {
-		for (const auto& source_line : source) {
-			lines.push_back(parse_line(source_line));
-		}
-	}
-	~CodeLines() = default;
+using CodeLines = std::vector<CodeLine>;
 
-	static CodeLine parse_line(const std::string& line) {
-		std::istringstream iss(line);
-		CodeLine cl{};
-
-		iss >> cl.instruction;
-		iss >> cl.destination;
-		if (cl.instruction != "snd" && cl.instruction != "rcv") {
-			std::string last;
-			iss >> last;
-			if ((last.length() > 1) || isdigit(last[0])) {
-				cl.value = std::stoll(last);
-			} else {
-				cl.source = last[0];
-			}
-		}
-		return cl;
-	}
-
-	auto begin() { return lines.begin(); };
-	auto end() { return lines.end(); };
-	auto cbegin() { return lines.cbegin(); };
-	auto cend() { return lines.cend(); };
-
-private:
-	std::vector<CodeLine> lines;
-};
+std::ostream& operator<<(std::ostream& os, const CodeLine& line);
 
 class Queue {
 public:
-	void add_to_queue(const VALUE& value) {
-		std::unique_lock<std::mutex> lock(mutex);
 
-		sent_values++;
-		queue.push_back(value);
-		lock.unlock();
-		cv.notify_all();
+	/// @name Construction and Destruction
+	/// @{
+	Queue() = default;
+	~Queue() = default;
+
+	// Copying is forbidden.
+	Queue(const Queue&) = delete;
+	Queue& operator=(const Queue&) = delete;
+
+	// Moving is forbidden.
+	Queue(Queue&&) = delete;
+	Queue& operator=(Queue&&) = delete;
+	/// @}
+
+	/// @name Queue manipulation.
+	/// @{
+	void push(const VALUE& value);
+	int pop();
+	/// @}
+
+	/// @name Auxilliary functions.
+	/// @{
+	bool empty() const {
+		return queue.empty();
 	}
+	void cleanup();
+	bool waiting() const;
+	/// @}
 
-	int get_from_queue(const Queue& other) {
-		std::unique_lock<std::mutex> lock(mutex);
-		cv.wait(lock, [&]{
-			waiting = true;
-			if (other.waiting == waiting) {
-				terminate = true;
-				return true;
-			}
-			return queue.size() > 0;
-		});
+	/// The underlying Queue of values.
+	std::deque<VALUE> queue;
 
-		if (terminate) {
-			return -1;
-		}
+	///
+	/// Mutex for locking the queue between threads. Only one thread can have
+	/// access to the queue at the same time.
+	///
+	std::mutex mutex;
 
-		auto result = queue.front();
-		queue.pop_front();
-		return result;
-	}
+	///
+	/// Condition Variable to synchronize value passing between the threads.
+	/// When a thread is popping a value from queue but queue is empty, that
+	/// thread will release the mutex and wait for condition variable to be
+	/// notified. When notification happens the queue will either process the
+	/// value or terminate, based on whether a value has been added to the queue.
+	///
+	std::condition_variable cv;
 
-	int get_sent_values() const { return sent_values; }
+	/// Should we finish?
+	bool clean_up = false;
+
+	/// Are we waiting?
+	bool is_waiting = false;
+};
+
+struct CPU {
+	CPU(CodeLines& code_lines, VALUE program_id);
+	~CPU();
+
+	/// @name CPU operations.
+	/// @{
+	void execute(CPU& cpu, bool part_two = false);
+	bool execute_line(CPU& cpu, bool part_two);
+	bool has_finished() const;
+	int get_send_count() const;
+	int get_sound_value() const;
+	/// @}
+
+	/// @name Registers operations.
+	/// @{
+	VALUE& set(const REGVALUE& to);
+	VALUE get(const REGVALUE& regvalue);
+	void set(const REGVALUE& to, const VALUE& from);
+	void set(const REGVALUE& to, const REGVALUE& from);
+	void add(const REGVALUE& to, const REGVALUE& from);
+	void mul(const REGVALUE& to, const REGVALUE& from);
+	void mod(const REGVALUE& to, const REGVALUE& from);
+	/// @}
+
+	/// Internal Queue for the given CPU.
+	Queue queue;
+
 
 private:
-	std::deque<VALUE> queue;
-	std::mutex mutex;
-	std::condition_variable cv;
-	bool waiting = false;
-	bool terminate = false;
-	int sent_values = 0;
+	/// Registers.
+	Registers registers;
+
+	/// Lines of code to execute.
+	CodeLines code_lines;
+
+	/// Instruction pointer.
+	int ip = 0;
+
+	/// Count of sent signals.
+	int count = 0;
+
+	/// Most recently sent signal.
+	int sound = 0;
 };
 
 class Day18: public Task {
@@ -111,16 +144,19 @@ public:
 	Day18() = default;
 	~Day18() override = default;
 
+	virtual void set_up() override;
+
 	virtual void solve_part_one() override;
 	virtual void solve_part_two() override;
 
 	virtual std::string part_one() const override;
 	virtual std::string part_two() const override;
 
-protected:
-	static int emulate(CodeLines& lines);
+private:
+	CodeLines code_lines;
 };
 
-int thread_func(CodeLines& lines, VALUE program_id, Queue& this_q, Queue& other_q);
+CodeLine parse_line(const std::string& line);
+CodeLines parse_lines(const std::vector<std::string>& lines);
 
 }

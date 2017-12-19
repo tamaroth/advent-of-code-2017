@@ -42,6 +42,15 @@ std::ostream& operator<<(std::ostream& os, const Matrix& mx) {
 	return os;
 }
 
+std::ostream& print_one(std::ostream& os) {
+	return os;
+}
+
+std::mutex& get_cout_mutex() {
+	static std::mutex m;
+	return m;
+}
+
 std::optional<std::string> read_line_from_file(const std::string& file_name) {
 	std::string line;
 	std::ifstream file_stream(file_name);

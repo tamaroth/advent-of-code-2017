@@ -3,6 +3,7 @@
 /// Day 18 tests.
 ///
 
+#include <chrono>
 #include <thread>
 
 #include <gmock/gmock.h>
@@ -14,14 +15,15 @@ namespace advent::tests {
 
 class Day18Tests: public TestsBase, public Day18 {};
 
+
 TEST_F(Day18Tests, parse_line_parses_correctly) {
 	std::string line = "set a -1";
 
-	auto op = CodeLines::parse_line(line);
+	auto op = parse_line(line);
 
 	ASSERT_EQ(op.instruction, "set");
-	ASSERT_EQ(op.destination, 'a');
-	ASSERT_EQ(op.value, -1);
+	ASSERT_EQ(std::get<REG>(op.first), 'a');
+	ASSERT_EQ(std::get<VALUE>(op.second), -1);
 }
 
 TEST_F(Day18Tests, emulate_instructions_emulates_correctly) {
@@ -37,11 +39,12 @@ TEST_F(Day18Tests, emulate_instructions_emulates_correctly) {
 		"set a 1",
 		"jgz a -2",
 	};
-	CodeLines code_lines(lines);
+	auto code_lines = parse_lines(lines);
+	CPU cpu(code_lines, 0);
 
-	auto result = emulate(code_lines);
+	cpu.execute(cpu);
 
-	ASSERT_EQ(result, 4);
+	ASSERT_EQ(cpu.get_sound_value(), 4);
 }
 
 TEST_F(Day18Tests, run_parallel_works) {
@@ -54,29 +57,27 @@ TEST_F(Day18Tests, run_parallel_works) {
 		"rcv c",
 		"rcv d",
 	};
-	CodeLines code_lines_a(lines);
-	CodeLines code_lines_b(lines);
+	CodeLines code_lines = parse_lines(lines);
 
-	Queue queue_a; VALUE program_id_a = 0;
-	Queue quque_b; VALUE program_id_b = 1;
+	CPU first(code_lines, 0);
+	CPU second(code_lines, 1);
 
-	std::thread thread_a(thread_func,
-		std::ref(code_lines_a),
-		program_id_a,
-		std::ref(queue_a),
-		std::ref(quque_b)
-	);
-	std::thread thread_b(thread_func,
-		std::ref(code_lines_b),
-		program_id_b,
-		std::ref(quque_b),
-		std::ref(queue_a)
-	);
+	std::thread thread_a([&] {
+		first.execute(second, true);
+	});
+	std::thread thread_b([&] {
+		second.execute(first, true);
+	});
 
-	thread_a.join();
-	thread_b.join();
+	thread_a.detach();
+	thread_b.detach();
 
-	ASSERT_EQ(queue_a.get_sent_values(), 3);
+	while (!first.has_finished() || !second.has_finished());
+
+	first.queue.cleanup();
+	second.queue.cleanup();
+
+	ASSERT_EQ(first.get_send_count(), 3);
 }
 
 }
