@@ -18,35 +18,54 @@
 | 12  | [Digital Plumber][day12] - [Solution][day12sol]                         |     314µs |      23ms |
 | 13  | [Packet Scanners][day13] - [Solution][day13sol]                         |      15µs |     341ms |
 | 14  | [Disk Defragmentation][day14] - [Solution][day14sol]                    |      18ms |      15ms |
+| 15  | [Dueling Generators][day15] - [Solution][day15sol]                      |     186ms |     290ms |
+| 16  | [Permutation Promenade][day16] - [Solution][day16sol]                   |       3ms |     387ms |
+| 17  | [Spinlock][day17] - [Solution][day17sol]                                |       1ms |     325ms |
+| 18  | [Duet][day18] - [Solution][day18sol]                                    |     109µs |       5ms |
+| 19  | [A Series of Tubes][day19] - [Solution][day19sol]                       |      60µs |      70µs |
+| 20  | [Particle Swarm][day20] - [Solution][day20sol]                          |     120µs |      13ms |
 
 [day01]: https://adventofcode.com/2017/day/1
-[day01sol]: ./advent/days/01/inverse_captcha.cc#L72
+[day01sol]: ./advent/days/01/inverse_captcha.cc
 [day02]: https://adventofcode.com/2017/day/2
-[day02sol]: ./advent/days/02/corruption_checksum.cc#L88
+[day02sol]: ./advent/days/02/corruption_checksum.cc
 [day03]: http://adventofcode.com/2017/day/3
-[day03sol]: ./advent/days/03/spiral_memory.cc#L76
+[day03sol]: ./advent/days/03/spiral_memory.cc
 [day04]: http://adventofcode.com/2017/day/4
-[day04sol]: ./advent/days/03/high_entropy_passphrases.cc#L69
+[day04sol]: ./advent/days/03/high_entropy_passphrases.cc
 [day05]: http://adventofcode.com/2017/day/5
-[day05sol]: ./advent/days/05/maze.cc#L54
+[day05sol]: ./advent/days/05/maze.cc
 [day06]: http://adventofcode.com/2017/day/6
-[day06sol]: ./advent/days/05/memory_reallocation.cc#L72
+[day06sol]: ./advent/days/05/memory_reallocation.cc
 [day07]: http://adventofcode.com/2017/day/7
-[day07sol]: ./advent/days/07/recursive_circus.cc#L64
+[day07sol]: ./advent/days/07/recursive_circus.cc
 [day08]: http://adventofcode.com/2017/day/8
-[day08sol]: ./advent/days/08/registers.cc#L47
+[day08sol]: ./advent/days/08/registers.cc
 [day09]: http://adventofcode.com/2017/day/9
-[day09sol]: ./advent/days/09/stream_processing.cc#L51
+[day09sol]: ./advent/days/09/stream_processing.cc
 [day10]: http://adventofcode.com/2017/day/10
-[day10sol]: ./advent/days/10/knot_hash.cc#L126
+[day10sol]: ./advent/days/10/knot_hash.cc
 [day11]: http://adventofcode.com/2017/day/11
-[day11sol]: ./advent/days/11/hex_ed.cc#L43
+[day11sol]: ./advent/days/11/hex_ed.cc
 [day12]: http://adventofcode.com/2017/day/12
-[day12sol]: ./advent/days/12/digital_plumber.cc#L47
+[day12sol]: ./advent/days/12/digital_plumber.cc
 [day13]: http://adventofcode.com/2017/day/13
-[day13sol]: ./advent/days/13/packet_scanners.cc#L48
-[day14]: http://adventofcode.com/2017/day/13
-[day14sol]: ./advent/days/14/disk_defragmentation.cc#L48
+[day13sol]: ./advent/days/13/packet_scanners.cc
+[day14]: http://adventofcode.com/2017/day/14
+[day14sol]: ./advent/days/14/disk_defragmentation.cc
+[day15]: http://adventofcode.com/2017/day/15
+[day15sol]: ./advent/days/15/dueling_generators.cc
+[day16]: http://adventofcode.com/2017/day/16
+[day16sol]: ./advent/days/16/permutation_promenade.cc
+[day17]: http://adventofcode.com/2017/day/17
+[day17sol]: ./advent/days/17/spinlock.cc
+[day18]: http://adventofcode.com/2017/day/18
+[day18sol]: ./advent/days/18/duet.cc
+[day19]: http://adventofcode.com/2017/day/19
+[day19sol]: ./advent/days/19/tubes.cc
+[day20]: http://adventofcode.com/2017/day/20
+[day20sol]: ./advent/days/20/particle_swarm.cc
+
 
 ## Building
 To build the code you will need:
