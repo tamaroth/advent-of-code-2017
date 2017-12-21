@@ -25,4 +25,7 @@
 	(std::cerr << __FILE__ ":" << __LINE__ << ": " << __func__ << \
 		": " << MSG << std::endl)
 
+#define THROW_LOGIC_MSG(MSG) \
+	std::cerr << __FILE__ ":" << __LINE__ << ": " << __func__ << std::endl; \
+	throw std::logic_error(MSG);
 /// @}

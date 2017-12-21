@@ -24,6 +24,7 @@
 | 18  | [Duet][day18] - [Solution][day18sol]                                    |     109µs |       5ms |
 | 19  | [A Series of Tubes][day19] - [Solution][day19sol]                       |      60µs |      70µs |
 | 20  | [Particle Swarm][day20] - [Solution][day20sol]                          |     120µs |      13ms |
+| 21  | [Fractal Art][day21] - [Solution][day21sol]                             |     404µs |    1825ms |
 
 [day01]: https://adventofcode.com/2017/day/1
 [day01sol]: ./advent/days/01/inverse_captcha.cc
@@ -65,6 +66,8 @@
 [day19sol]: ./advent/days/19/tubes.cc
 [day20]: http://adventofcode.com/2017/day/20
 [day20sol]: ./advent/days/20/particle_swarm.cc
+[day21]: http://adventofcode.com/2017/day/21
+[day21sol]: ./advent/days/21/fractal_art.cc
 
 
 ## Building

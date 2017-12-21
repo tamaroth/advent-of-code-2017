@@ -23,6 +23,7 @@ set(DAYS_SOURCES
 	18/duet.cc
 	19/tubes.cc
 	20/particle_swarm.cc
+	21/fractal_art.cc
 )
 
 add_library(days SHARED ${DAYS_SOURCES})
@@ -95,3 +96,8 @@ add_custom_command(TARGET days POST_BUILD
 add_custom_command(TARGET days POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy
 		${SRC_DIR}/advent/days/20/day_20_input.txt ${PROJECT_BINARY_DIR})
+
+## Day 21 input
+add_custom_command(TARGET days POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy
+		${SRC_DIR}/advent/days/21/day_21_input.txt ${PROJECT_BINARY_DIR})
